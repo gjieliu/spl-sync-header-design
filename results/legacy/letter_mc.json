@@ -1,0 +1,269 @@
+{
+  "eps": 0.05,
+  "L_c": 10,
+  "n_trials": 2000000,
+  "n_frames": 300,
+  "channel": "ipd_fission_fusion_v1",
+  "rng_scheme": "independent_streams_per_config_and_metric_v2",
+  "n_h0_screen_flows": 500000,
+  "n_h1_screen_flows": 3000,
+  "n_yield_flows": 3000,
+  "seed": 7,
+  "rows": [
+    {
+      "_sig": [
+        0.005,
+        10,
+        9,
+        3,
+        19,
+        17,
+        1631,
+        100
+      ],
+      "lam": 0.005,
+      "L_h": 10,
+      "tau": 9,
+      "R": 3,
+      "p0_theory": 0.0107421875,
+      "pW_theory": 0.07281494866037556,
+      "pW_mc": 0.0743875,
+      "q_theory": 0.8691827613551748,
+      "q_mc": 0.8499163879598662,
+      "N_scr": 19,
+      "k_scr": 17,
+      "M_scr": 1631,
+      "N_max": 100,
+      "yield_expected_theory": 73.88053471518984,
+      "h0_screen": {
+        "n_flows": 500000,
+        "n_start": 1631,
+        "p_confirm_mc": 0.0,
+        "false_confirm": 0,
+        "mean_initial_hits": 17.533304,
+        "mean_launched_tracks": 17.533304,
+        "max_count_seen": 11
+      },
+      "h1_screen": {
+        "n_flows": 3000,
+        "n_start": 1631,
+        "p_confirm_mc": 1.0,
+        "confirmed": 3000,
+        "mean_initial_hits": 79.25966666666666,
+        "mean_launched_tracks": 79.25966666666666,
+        "max_count_seen": 17
+      },
+      "yield_mc": {
+        "n_flows": 3000,
+        "yield_mean": 88.27966666666667,
+        "yield_q_delta": 45,
+        "yield_min": 9,
+        "yield_max": 99
+      }
+    },
+    {
+      "_sig": [
+        0.01,
+        10,
+        9,
+        3,
+        20,
+        17,
+        1611,
+        100
+      ],
+      "lam": 0.01,
+      "L_h": 10,
+      "tau": 9,
+      "R": 3,
+      "p0_theory": 0.0107421875,
+      "pW_theory": 0.07281494866037556,
+      "pW_mc": 0.0742765,
+      "q_theory": 0.8264757530622276,
+      "q_mc": 0.8018394648829431,
+      "N_scr": 20,
+      "k_scr": 17,
+      "M_scr": 1611,
+      "N_max": 100,
+      "yield_expected_theory": 70.25043901028933,
+      "h0_screen": {
+        "n_flows": 500000,
+        "n_start": 1611,
+        "p_confirm_mc": 0.0,
+        "false_confirm": 0,
+        "mean_initial_hits": 17.296534,
+        "mean_launched_tracks": 17.296534,
+        "max_count_seen": 11
+      },
+      "h1_screen": {
+        "n_flows": 3000,
+        "n_start": 1611,
+        "p_confirm_mc": 1.0,
+        "confirmed": 3000,
+        "mean_initial_hits": 74.53733333333334,
+        "mean_launched_tracks": 74.53733333333334,
+        "max_count_seen": 17
+      },
+      "yield_mc": {
+        "n_flows": 3000,
+        "yield_mean": 85.06166666666667,
+        "yield_q_delta": 34,
+        "yield_min": 7,
+        "yield_max": 98
+      }
+    },
+    {
+      "_sig": [
+        0.02,
+        11,
+        10,
+        4,
+        19,
+        15,
+        1612,
+        95
+      ],
+      "lam": 0.02,
+      "L_h": 11,
+      "tau": 10,
+      "R": 4,
+      "p0_theory": 0.005859375,
+      "pW_theory": 0.05151516335270964,
+      "pW_mc": 0.051952,
+      "q_theory": 0.7191389708230419,
+      "q_mc": 0.7770903010033445,
+      "N_scr": 19,
+      "k_scr": 15,
+      "M_scr": 1612,
+      "N_max": 95,
+      "yield_expected_theory": 58.07047189396064,
+      "h0_screen": {
+        "n_flows": 500000,
+        "n_start": 1612,
+        "p_confirm_mc": 0.0,
+        "false_confirm": 0,
+        "mean_initial_hits": 9.446764,
+        "mean_launched_tracks": 9.446764,
+        "max_count_seen": 9
+      },
+      "h1_screen": {
+        "n_flows": 3000,
+        "n_start": 1612,
+        "p_confirm_mc": 0.9986666666666667,
+        "confirmed": 2996,
+        "mean_initial_hits": 66.101,
+        "mean_launched_tracks": 66.101,
+        "max_count_seen": 15
+      },
+      "yield_mc": {
+        "n_flows": 3000,
+        "yield_mean": 73.58366666666667,
+        "yield_q_delta": 28,
+        "yield_min": 5,
+        "yield_max": 90
+      }
+    },
+    {
+      "_sig": [
+        0.03,
+        12,
+        11,
+        5,
+        21,
+        14,
+        1549,
+        90
+      ],
+      "lam": 0.03,
+      "L_h": 12,
+      "tau": 11,
+      "R": 5,
+      "p0_theory": 0.003173828125,
+      "pW_theory": 0.03436332600736813,
+      "pW_mc": 0.0347535,
+      "q_theory": 0.6117186110525731,
+      "q_mc": 0.6882107023411371,
+      "N_scr": 21,
+      "k_scr": 14,
+      "M_scr": 1549,
+      "N_max": 90,
+      "yield_expected_theory": 46.796473745521865,
+      "h0_screen": {
+        "n_flows": 500000,
+        "n_start": 1549,
+        "p_confirm_mc": 0.0,
+        "false_confirm": 0,
+        "mean_initial_hits": 4.916078,
+        "mean_launched_tracks": 4.916078,
+        "max_count_seen": 9
+      },
+      "h1_screen": {
+        "n_flows": 3000,
+        "n_start": 1549,
+        "p_confirm_mc": 1.0,
+        "confirmed": 3000,
+        "mean_initial_hits": 53.364333333333335,
+        "mean_launched_tracks": 53.364333333333335,
+        "max_count_seen": 14
+      },
+      "yield_mc": {
+        "n_flows": 3000,
+        "yield_mean": 62.739666666666665,
+        "yield_q_delta": 31,
+        "yield_min": 6,
+        "yield_max": 81
+      }
+    },
+    {
+      "_sig": [
+        0.05,
+        11,
+        11,
+        6,
+        23,
+        9,
+        1528,
+        95
+      ],
+      "lam": 0.05,
+      "L_h": 11,
+      "tau": 11,
+      "R": 6,
+      "p0_theory": 0.00048828125,
+      "pW_theory": 0.006329092855004775,
+      "pW_mc": 0.006359,
+      "q_theory": 0.3235333066236931,
+      "q_mc": 0.35334448160535115,
+      "N_scr": 23,
+      "k_scr": 9,
+      "M_scr": 1528,
+      "N_max": 95,
+      "yield_expected_theory": 26.12531450986324,
+      "h0_screen": {
+        "n_flows": 500000,
+        "n_start": 1528,
+        "p_confirm_mc": 0.0,
+        "false_confirm": 0,
+        "mean_initial_hits": 0.74508,
+        "mean_launched_tracks": 0.74508,
+        "max_count_seen": 5
+      },
+      "h1_screen": {
+        "n_flows": 3000,
+        "n_start": 1528,
+        "p_confirm_mc": 0.9763333333333334,
+        "confirmed": 2929,
+        "mean_initial_hits": 26.069,
+        "mean_launched_tracks": 26.069,
+        "max_count_seen": 9
+      },
+      "yield_mc": {
+        "n_flows": 3000,
+        "yield_mean": 33.035333333333334,
+        "yield_q_delta": 15,
+        "yield_min": 2,
+        "yield_max": 52
+      }
+    }
+  ]
+}

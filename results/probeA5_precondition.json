@@ -1,0 +1,221 @@
+{
+ "K": 16,
+ "rows": [
+  {
+   "pool": "iscx_tor_file_transfer_ipd",
+   "delta": 1.0,
+   "bias": 0.350135,
+   "rho_max": 0.4726363152758317,
+   "rho_argmax": 3,
+   "rho1": 0.11308589696515009,
+   "p0_ratio_worst": 7.670105154731963
+  },
+  {
+   "pool": "iscx_tor_chat_ipd",
+   "delta": 1.0,
+   "bias": 0.4624876604146101,
+   "rho_max": 0.045405028840150165,
+   "rho_argmax": 15,
+   "rho1": 0.03480136075631563,
+   "p0_ratio_worst": 1.5169621253271444
+  },
+  {
+   "pool": "iscx_tor_chat_ipd",
+   "delta": 19.0,
+   "bias": 0.3298124383020731,
+   "rho_max": 0.08978721668054804,
+   "rho_argmax": 1,
+   "rho1": 0.08978721668054804,
+   "p0_ratio_worst": 1.264135104439287
+  },
+  {
+   "pool": "iscx_tor_chat_ipd",
+   "delta": 5.0,
+   "bias": 0.36204343534057254,
+   "rho_max": 0.050570969176445685,
+   "rho_argmax": 1,
+   "rho1": 0.050570969176445685,
+   "p0_ratio_worst": 1.2135697002617154
+  },
+  {
+   "pool": "iscx_vpn_audio_ipd",
+   "delta": 1.0,
+   "bias": 0.434445,
+   "rho_max": 0.062137951611108196,
+   "rho_argmax": 7,
+   "rho1": 0.0284555389883636,
+   "p0_ratio_worst": 1.1622923031536418
+  },
+  {
+   "pool": "iscx_vpn_ipd",
+   "delta": 1.0,
+   "bias": 0.434445,
+   "rho_max": 0.062137951611108196,
+   "rho_argmax": 7,
+   "rho1": 0.0284555389883636,
+   "p0_ratio_worst": 1.1622923031536418
+  },
+  {
+   "pool": "iscx_vpn_audio_ipd",
+   "delta": 5.0,
+   "bias": 0.344725,
+   "rho_max": 0.09548502054398594,
+   "rho_argmax": 1,
+   "rho1": 0.09548502054398594,
+   "p0_ratio_worst": 1.0366600932282046
+  },
+  {
+   "pool": "iscx_vpn_ipd",
+   "delta": 5.0,
+   "bias": 0.344725,
+   "rho_max": 0.09548502054398594,
+   "rho_argmax": 1,
+   "rho1": 0.09548502054398594,
+   "p0_ratio_worst": 1.0366600932282046
+  },
+  {
+   "pool": "iscx_tor_chat_ipd",
+   "delta": 50.0,
+   "bias": 0.28168805528134255,
+   "rho_max": 0.07609532187710266,
+   "rho_argmax": 9,
+   "rho1": 0.06601165892800569,
+   "p0_ratio_worst": 0.960742679373858
+  },
+  {
+   "pool": "iscx_tor_ipd",
+   "delta": 1.0,
+   "bias": 0.31678,
+   "rho_max": 0.10017775038321945,
+   "rho_argmax": 1,
+   "rho1": 0.10017775038321945,
+   "p0_ratio_worst": 0.7751318630216969
+  },
+  {
+   "pool": "iscx_vpn_audio_ipd",
+   "delta": 19.0,
+   "bias": 0.137805,
+   "rho_max": 0.2443272338791658,
+   "rho_argmax": 1,
+   "rho1": 0.2443272338791658,
+   "p0_ratio_worst": 0.6297883404753214
+  },
+  {
+   "pool": "iscx_vpn_ipd",
+   "delta": 19.0,
+   "bias": 0.137805,
+   "rho_max": 0.2443272338791658,
+   "rho_argmax": 1,
+   "rho1": 0.2443272338791658,
+   "p0_ratio_worst": 0.6297883404753214
+  },
+  {
+   "pool": "iscx_vpn_audio_ipd",
+   "delta": 50.0,
+   "bias": 0.710155,
+   "rho_max": 0.4182036923608303,
+   "rho_argmax": 1,
+   "rho1": 0.4182036923608303,
+   "p0_ratio_worst": 0.5624432420706216
+  },
+  {
+   "pool": "iscx_vpn_ipd",
+   "delta": 50.0,
+   "bias": 0.710155,
+   "rho_max": 0.4182036923608303,
+   "rho_argmax": 1,
+   "rho1": 0.4182036923608303,
+   "p0_ratio_worst": 0.5624432420706216
+  },
+  {
+   "pool": "iscx_tor_ipd",
+   "delta": 5.0,
+   "bias": 0.221755,
+   "rho_max": 0.10455732632555886,
+   "rho_argmax": 1,
+   "rho1": 0.10455732632555886,
+   "p0_ratio_worst": 0.48200798139045975
+  },
+  {
+   "pool": "iscx_tor_video_ipd",
+   "delta": 1.0,
+   "bias": 0.17699,
+   "rho_max": 0.04667511970218976,
+   "rho_argmax": 6,
+   "rho1": 0.006832604718915638,
+   "p0_ratio_worst": 0.3402074628167541
+  },
+  {
+   "pool": "iscx_tor_ipd",
+   "delta": 19.0,
+   "bias": 0.1754,
+   "rho_max": 0.07919515465707395,
+   "rho_argmax": 3,
+   "rho1": 0.07325127316627873,
+   "p0_ratio_worst": 0.3174511107888776
+  },
+  {
+   "pool": "iscx_tor_ipd",
+   "delta": 50.0,
+   "bias": 0.11812,
+   "rho_max": 0.09789598124898372,
+   "rho_argmax": 1,
+   "rho1": 0.09789598124898372,
+   "p0_ratio_worst": 0.1883088130306783
+  },
+  {
+   "pool": "iscx_tor_video_ipd",
+   "delta": 5.0,
+   "bias": 0.080805,
+   "rho_max": 0.0378445299700522,
+   "rho_argmax": 1,
+   "rho1": 0.0378445299700522,
+   "p0_ratio_worst": 0.06272219527683469
+  },
+  {
+   "pool": "iscx_tor_video_ipd",
+   "delta": 19.0,
+   "bias": 0.055035,
+   "rho_max": 0.03934936260321165,
+   "rho_argmax": 1,
+   "rho1": 0.03934936260321165,
+   "p0_ratio_worst": 0.0460820736933162
+  },
+  {
+   "pool": "iscx_tor_video_ipd",
+   "delta": 50.0,
+   "bias": 0.047415,
+   "rho_max": 0.04830551811193544,
+   "rho_argmax": 1,
+   "rho1": 0.04830551811193544,
+   "p0_ratio_worst": 0.03171666563885292
+  },
+  {
+   "pool": "iscx_tor_file_transfer_ipd",
+   "delta": 5.0,
+   "bias": 0.06193,
+   "rho_max": 0.2145209054432288,
+   "rho_argmax": 13,
+   "rho1": 0.024271319603689546,
+   "p0_ratio_worst": 0.010524812812892895
+  },
+  {
+   "pool": "iscx_tor_file_transfer_ipd",
+   "delta": 50.0,
+   "bias": 0.01349,
+   "rho_max": 0.06071669535897186,
+   "rho_argmax": 1,
+   "rho1": 0.06071669535897186,
+   "p0_ratio_worst": 0.010240460820736933
+  },
+  {
+   "pool": "iscx_tor_file_transfer_ipd",
+   "delta": 19.0,
+   "bias": 0.01821,
+   "rho_max": 0.06199629139992236,
+   "rho_argmax": 1,
+   "rho1": 0.06199629139992236,
+   "p0_ratio_worst": 0.0051202304103684666
+  }
+ ]
+}
