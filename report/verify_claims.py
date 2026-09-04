@@ -48,8 +48,10 @@ CHECKS = [
   and max(B[round(r["lam"], 5)]["by_burst"]["20"]["blackout_frac"] for r in sub4) <= 0.395
   and "0.39" in DOC["manuscript"]),
  ("weight-0 p0 = 48x bound", abs(bw["by_weight"]["0"]["p0_max"] / bw["p0_theory"] - 48) < 1.0),
- ("full balanced enum, 48 cells, worst 1.14x at even L_h",
-  abs(max(r["p0_ratio_worst"] for r in A3["rows"] if r["L_h"] % 2 == 0) - 1.14) < 0.02),
+ ("full balanced enum, 24 even-L_h cells, worst 1.14x; odd L_h=11 reaches 2.2x",
+  abs(max(r["p0_ratio_worst"] for r in A3["rows"] if r["L_h"] % 2 == 0) - 1.14) < 0.02
+  and sum(1 for r in A3["rows"] if r["L_h"] % 2 == 0) == 24 and "$24$ cells" in DOC["manuscript"]
+  and abs(max(r["p0_ratio_worst"] for r in A3["rows"] if r["L_h"] == 11) - 2.23) < 0.02 and "2.2\\times" in DOC["manuscript"]),
  ("144 cells, 7 above 1.5x, worst 7.67x",
   len(A4["rows"]) == 144 and sum(1 for r in A4["rows"] if r["p0_ratio"] > 1.5) == 7
   and abs(A4["worst_p0_ratio_over_all_cells"] - 7.67) < 0.02),

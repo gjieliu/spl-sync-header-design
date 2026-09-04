@@ -39,7 +39,7 @@ for pool, d, mk, lab in series:
     ax[0].annotate(lab, xy=(ws[-1], ys[-1]), xytext=(-1, 3 if lab == "VPN" else -7),
                    textcoords="offset points", ha="right", fontsize=5.4)
 ax[0].axhline(p0t, color="k", ls="--", lw=0.8)
-ax[0].text(9.7, p0t * 1.5, "fair-bit bound", ha="right", fontsize=5.4)
+ax[0].text(-0.3, p0t * 0.42, "fair-bit bound", ha="left", fontsize=5.4)
 ax[0].axvline(5, color="0.6", ls=":", lw=0.8)
 ax[0].text(5.25, 1.1e-4, "balanced", fontsize=5.4, color="0.35")
 ax[0].set_xlabel("Hamming weight $w$", labelpad=0.5)
@@ -57,7 +57,7 @@ ax[1].semilogy(ks, [l["emp"] for l in lad], "s--", ms=2.2, lw=0.8, color="C3",
                mfc="none")
 ax[1].annotate("certified bound", xy=(ks[-1], lad[-1]["bound"]), xytext=(-2, 5),
                textcoords="offset points", ha="right", fontsize=5.4, color="C0")
-ax[1].annotate("measured", xy=(ks[-1], lad[-1]["emp"]), xytext=(-2, -8),
+ax[1].annotate("measured", xy=(ks[-3], lad[-3]["emp"]), xytext=(-4, -9),
                textcoords="offset points", ha="right", fontsize=5.4, color="C3")
 ax[1].set_xlabel("confirmations $k$ (weakened)", labelpad=0.5)
 ax[1].set_ylabel("false confirmation", labelpad=0.5)
