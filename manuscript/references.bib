@@ -1,0 +1,768 @@
+% ============================================================
+% references.bib — Paper 1/2/3 共享参考文献库
+% 收录的所有条目均经核对其作者/标题/出版年/会议或期刊；
+% 自引用配套工作 (Cao2024Cyclic/Cao2024Feedback/Cao2024InfoBounds) 视投稿时进度替换为正式文献条目
+% ============================================================
+
+% ============================================================
+% A. 流水印基础与攻击文献
+% ============================================================
+
+@inproceedings{Wang2003Stepping,
+  author    = {Xinyuan Wang and Douglas S. Reeves},
+  title     = {Robust Correlation of Encrypted Attack Traffic Through Stepping Stones by Manipulation of Interpacket Delays},
+  booktitle = {Proc. 10th ACM Conf. Computer and Communications Security (CCS)},
+  year      = {2003},
+  pages     = {20--29},
+  doi       = {10.1145/948109.948115},
+  abstract  = {Network based intruders seldom attack directly from their own hosts, but rather stage their attacks through intermediate ``stepping stones'' to conceal their identity and origin. To identify attackers behind stepping stones, it is necessary to be able to correlate connections through stepping stones, even if those connections are encrypted or perturbed by the intruder to prevent traceability. The timing-based approach is the most capable and promising current method for correlating encrypted connections. However, previous timing-based approaches are vulnerable to packet timing perturbations introduced by the attacker at stepping stones. In this paper, we propose a novel watermark-based correlation scheme that is designed specifically to be robust against timing perturbations. The watermark is introduced by slightly adjusting the timing of selected packets of the flow. By utilizing redundancy techniques, we have developed a robust watermark correlation framework that reveals a rather surprising result on the inherent limits of independent and identically distributed (iid) random timing perturbations over sufficiently long flows. We also identify the tradeoffs between timing perturbation characteristics and achievable correlation effectiveness. Experiments show that the new method performs significantly better than existing, passive, timing-based correlation in the presence of random packet timing perturbations.},
+  verify    = {2},
+}
+
+@inproceedings{Wang2007EffectiveAttack,
+  author    = {Xinyuan Wang and Shiping Chen and Sushil Jajodia},
+  title     = {Network Flow Watermarking Attack on Low-Latency Anonymous Communication Systems},
+  booktitle = {Proc. IEEE Symposium on Security and Privacy (S\&P)},
+  year      = {2007},
+  pages     = {116--130},
+  doi       = {10.1109/SP.2007.30},
+  abstract  = {Many proposed low-latency anonymous communication systems have used various flow transformations such as traffic padding, adding cover traffic (or bogus packets), packet dropping, flow mixing, flow splitting, and flow merging to achieve anonymity. It has long been believed that these flow transformations would effectively disguise network flows, thus achieve good anonymity. In this paper, we investigate the fundamental limitations of flow transformations in achieving anonymity, and we show that flow transformations do not necessarily provide the level of anonymity people have expected or believed. By injecting unique watermark into the inter-packet timing domain of a packet flow, we are able to make any sufficiently long flow uniquely identifiable even if 1) it is disguised by substantial amount of cover traffic, 2) it is mixed or merged with a number of other flows, 3) it is split into a number subflows, 4) there is a substantial portion of packets dropped, and 5) it is perturbed in timing due to either natural network delay jitter or deliberate timing perturbation. In addition to demonstrating the theoretical limitations of low-latency anonymous communications systems, we develop the first practical attack on the leading commercial low-latency anonymous communication system. Our real-time experiments show that our flow watermarking attack only needs about 10 minutes active Web browsing traffic to ``penetrate'' the Total Net Shield service provided by www.anonymizer.com. Our analytical and empirical results demonstrate that achieving anonymity in low-latency communication systems is much harder than we have realized, and current flow transformation based low-latency anonymous communication systems need to be revisited.},
+  verify    = {2},
+}
+
+@inproceedings{Yu2007DSSS,
+  author    = {Wei Yu and Xinwen Fu and Steve Graham and Dong Xuan and Wei Zhao},
+  title     = {{DSSS}-Based Flow Marking Technique for Invisible Traceback},
+  booktitle = {Proc. IEEE Symposium on Security and Privacy (S\&P)},
+  year      = {2007},
+  pages     = {18--32},
+  doi       = {10.1109/SP.2007.14},
+  abstract  = {Law enforcement agencies need the ability to conduct electronic surveillance to combat crime, terrorism, or other malicious activities exploiting the Internet. However, the proliferation of anonymous communication systems on the Internet has posed significant challenges to providing such traceback capability. In this paper, we develop a new class of flow marking technique for invisible traceback based on Direct Sequence Spread Spectrum (DSSS), utilizing a Pseudo-Noise (PN) code. By interfering with a sender's traffic and marginally varying its rate, an investigator can embed a secret spread spectrum signal into the sender's traffic. The embedded signal is carried along with the traffic from the sender to the receiver, so the investigator can recognize the corresponding communication relationship, tracing the messages despite the use of anonymous networks. The secret PN code makes it difficult for others to detect the presence of such embedded signals, so the traceback, while available to investigators is, effectively invisible. We demonstrate a practical flow marking system which requires no training, and can achieve both high detection and low false positive rates. Using a combination of analytical modeling, simulations, and experiments on Tor (a popular Internet anonymous communication system), we demonstrate the effectiveness of the DSSS-based flow marking technique.},
+  verify    = {2},
+}
+
+@inproceedings{houmansadr2009rainbow,
+  author    = {Amir Houmansadr and Negar Kiyavash and Nikita Borisov},
+  title     = {{RAINBOW}: A Robust And Invisible Non-Blind Watermark for Network Flows},
+  booktitle = {Proc. 16th Network and Distributed System Security Symposium (NDSS)},
+  year      = {2009},
+  abstract  = {Linking network flows is an important problem in intrusion detection as well as anonymity. Passive traffic analysis can link flows but requires long periods of observation to reduce errors. Watermarking techniques allow for better precision and blind detection, but they do so by introducing significant delays to the traffic flow, enabling attacks that detect and remove the mark, while at the same time slowing down legitimate traffic. We propose a new, non-blind watermarking scheme called RAINBOW that is able to use delays hundreds of times smaller than existing watermarks by eliminating the interference caused by the flow in the blind case. As a result, our watermark is invisible to detection, as confirmed by experiments using information-theoretic detection tools. We analyze the error rates of our scheme based on a mathematical model of network traffic and jitter. We also validate the analysis using an implementation running on PlanetLab. We find that our scheme generates orders of magnitudes lower rates of false errors than passive traffic analysis, while using only a few hundred observed packets. We also extend our scheme so that it is robust to packet drops and repacketization and show that flows can still be reliably linked, though at the cost of somewhat longer observation periods.},
+  verify    = {2},
+}
+
+@inproceedings{houmansadr2011swirl,
+  author    = {Amir Houmansadr and Nikita Borisov},
+  title     = {{SWIRL}: A Scalable Watermark to Detect Correlated Network Flows},
+  booktitle = {Proc. 18th Network and Distributed System Security Symposium (NDSS)},
+  year      = {2011},
+  abstract  = {Flow watermarks are active traffic analysis techniques that help establish a causal connection between two network flows by content-independent manipulations, e.g., altering packet timings. Watermarks provide a much more scalable approach for flow correlation than passive traffic analysis. Previous designs of scalable watermarks, however, were subject to multi-flow attacks. They also introduced delays too large to be used in most environments. We design SWIRL, a Scalable Watermark that is Invisible and Resilient to packet Losses. SWIRL is the first watermark that is practical to use for large-scale traffic analysis. SWIRL uses a flow-dependent approach to resist multi-flow attacks, marking each flow with a different pattern. SWIRL is robust to packet losses and network jitter, yet it introduces only small delays that are invisible to both benign users and determined adversaries. We analyze the performance of SWIRL both analytically and on the PlanetLab testbed, demonstrating very low error rates. We consider applications of SWIRL to stepping stone detection and linking anonymous communication. We also propose a novel application of watermarks to defend against congestion attacks on Tor.},
+  verify    = {2},
+}
+
+@inproceedings{Houmansadr2013,
+  author    = {Amir Houmansadr and Chad Brubaker and Vitaly Shmatikov},
+  title     = {The Parrot is Dead: Observing Unobservable Network Communications},
+  booktitle = {Proc. IEEE Symposium on Security and Privacy (S\&P)},
+  year      = {2013},
+  pages     = {65--79},
+  doi       = {10.1109/SP.2013.14},
+  abstract  = {In response to the growing popularity of Tor and other censorship circumvention systems, censors in non-democratic countries have increased their technical capabilities and can now recognize and block network traffic generated by these systems on a nationwide scale. New censorship-resistant communication systems such as Skype Morph, Stego Torus, and Censor Spoofer aim to evade censors' observations by imitating common protocols like Skype and HTTP. We demonstrate that these systems completely fail to achieve unobservability. Even a very weak, local censor can easily distinguish their traffic from the imitated protocols. We show dozens of passive and active methods that recognize even a single imitated session, without any need to correlate multiple network flows or perform sophisticated traffic analysis. We enumerate the requirements that a censorship-resistant system must satisfy to successfully mimic another protocol and conclude that ``unobservability by imitation'' is a fundamentally flawed approach. We then present our recommendations for the design of unobservable communication systems.},
+  verify    = {2},
+}
+
+@inproceedings{Kiyavash2008,
+  author    = {Negar Kiyavash and Amir Houmansadr and Nikita Borisov},
+  title     = {Multi-flow Attacks Against Network Flow Watermarking Schemes},
+  booktitle = {Proc. 17th USENIX Security Symposium},
+  year      = {2008},
+  pages     = {307--320},
+  doi       = {10.5555/1496711.1496732},
+  abstract  = {We analyze several recent schemes for watermarking network flows based on splitting the flow into intervals. We show that this approach creates time dependent correlations that enable an attack that combines multiple watermarked flows. Such an attack can easily be mounted in nearly all applications of network flow watermarking, both in anonymous communication and stepping stone detection. The attack can be used to detect the presence of a watermark, recover the secret parameters, and remove the watermark from a flow. The attack can be effective even if different the watermarks in different flows carry different messages. We analyze the efficacy of our attack using a probabilistic model and a Markov-modulated Poisson process (MMPP) model of interactive traffic. We also implement our attack and test it using both synthetic and real-world traces, showing that our attack is effective with as few as 10 watermarked flows. Finally, we propose a countermeasure that defeats the attack by using multiple watermark positions.},
+  verify    = {2},
+}
+
+@inproceedings{Lin2012,
+  author    = {Zi Lin and Nicholas Hopper},
+  title     = {New Attacks on Timing-Based Network Flow Watermarks},
+  booktitle = {Proc. 21st USENIX Security Symposium},
+  year      = {2012},
+  doi       = {10.5555/2362793.2362813},
+  abstract  = {A network flow watermarking scheme attempts to manipulate the statistical properties of a flow of packets to insert a ``mark'' making it easier to detect the flow after passing through one or more relay hosts. Because an attacker that is willing to tolerate delay can (nearly) always eliminate such marks, recent schemes have concentrated on making the marks ``invisible'' so that a passive attacker cannot detect the presence of the mark. In this work, we argue that from a system's perspective, security against passive detection is insufficient for successful traffic analysis. We introduce a stronger, but feasible attack model (a known/chosen flow attacker) and a second security goal (security against copy attacks) and argue that security against both of these attacks is required for successful traffic analysis. We also demonstrate successful attacks against two recent watermarking schemes, RAINBOW and SWIRL, and show how considering these stronger attacks can aid in the design of passive detection attacks against each as well.},
+  verify    = {2},
+}
+
+@article{Iacovazzi2017Survey,
+  author    = {Alfonso Iacovazzi and Yuval Elovici},
+  title     = {Network Flow Watermarking: A Survey},
+  journal   = {IEEE Communications Surveys \& Tutorials},
+  volume    = {19},
+  number    = {1},
+  pages     = {512--530},
+  year      = {2017},
+  doi       = {10.1109/COMST.2016.2604405},
+  abstract  = {Traffic analysis (TA) is a useful tool aimed at understanding network traffic behavior. Basic network administration often takes advantage of TA for purposes such as security, intrusion detection, traffic shaping and policing, diagnostic monitoring, provisioning, and resource management. Network flow watermarking is a type of TA in which packet features of selected flows are manipulated in order to add a specific pattern easily identifiable when the watermarked flows cross an observation point. While passive TA has been extensively studied with hundreds of papers found in the literature, active TA, and more specifically network flow watermarking, has only recently attracted attention. Enforced robustness against traffic perturbations due to either natural network noise or attacks against passive TA have enhanced the appeal of this technique. The contribution of this paper is a thorough review of the main watermarking algorithms implemented for traffic analysis purposes. We present an overview of the motivations and the objectives that have led to the use of network flow watermarking. We also describe the general architecture of a watermarking system. In addition, we impose clarity and order in this branch of TA by providing a taxonomy of the algorithms proposed in the literature over the years, and categorize and present them based on carrier, visibility, and robustness.},
+  verify    = {2},
+}
+
+@inproceedings{Cabuk2004,
+  author    = {Serdar Cabuk and Carla E. Brodley and Clay Shields},
+  title     = {{IP} Covert Timing Channels: Design and Detection},
+  booktitle = {Proc. 11th ACM Conf. Computer and Communications Security (CCS)},
+  year      = {2004},
+  pages     = {178--187},
+  doi       = {10.1145/1030083.1030108},
+  abstract  = {A network covert channel is a mechanism that can be used to leak information across a network in violation of a security policy and in a manner that can be difficult to detect. In this paper, we describe our implementation of a covert network timing channel, discuss the subtle issues that arose in its design, and present performance data for the channel. We then use our implementation as the basis for our experiments in its detection. We show that the regularity of a timing channel can be used to differentiate it from other traffic and present two methods of doing so and measures of their efficiency. We also investigate mechanisms that attackers might use to disrupt the regularity of the timing channel, and demonstrate methods of detection that are effective against them.},
+  verify    = {2},
+}
+
+% ============================================================
+% B. 信息隐藏与 QIM
+% ============================================================
+
+@article{Chen2001QIM,
+  author    = {Brian Chen and Gregory W. Wornell},
+  title     = {Quantization Index Modulation: A Class of Provably Good Methods for Digital Watermarking and Information Embedding},
+  journal   = {IEEE Trans. Inf. Theory},
+  volume    = {47},
+  number    = {4},
+  pages     = {1423--1443},
+  year      = {2001},
+  doi       = {10.1109/18.923725},
+  abstract  = {We consider the problem of embedding one signal (e.g., a digital watermark), within another ``host'' signal to form a third, ``composite'' signal. The embedding is designed to achieve efficient tradeoffs among the three conflicting goals of maximizing the information-embedding rate, minimizing the distortion between the host signal and composite signal, and maximizing the robustness of the embedding. We introduce new classes of embedding methods, termed quantization index modulation (QIM) and distortion-compensated QIM (DC-QIM), and develop convenient realizations in the form of what we refer to as dither modulation. Using deterministic models to evaluate digital watermarking methods, we show that QIM is ``provably good'' against arbitrary bounded and fully informed attacks, which arise in several copyright applications, and in particular it achieves provably better rate distortion-robustness tradeoffs than currently popular spread-spectrum and low-bit(s) modulation methods. Furthermore, we show that for some important classes of probabilistic models, DC-QIM is optimal (capacity-achieving) and regular QIM is near-optimal. These include both additive white Gaussian noise (AWGN) channels, which may be good models for hybrid transmission applications such as digital audio broadcasting, and mean-square-error-constrained attack channels that model private-key watermarking applications.},
+  verify    = {2},
+}
+
+@article{Costa1983,
+  author    = {Max H. M. Costa},
+  title     = {Writing on Dirty Paper},
+  journal   = {IEEE Trans. Inf. Theory},
+  volume    = {29},
+  number    = {3},
+  pages     = {439--441},
+  year      = {1983},
+  doi       = {10.1109/TIT.1983.1056659},
+  abstract  = {A channel with arbitrary additive Gaussian noise is considered. The result, equivalent to one by Gel'fand and Pinsker for a similar channel, is that the capacity is equal to that of a similar channel without the additive noise. The proof is constructive and suggests an encoding scheme due to H. M. Costa and M. E. Hellman.},
+  verify    = {2},
+}
+
+@book{Cox2007,
+  author    = {Ingemar J. Cox and Matthew L. Miller and Jeffrey A. Bloom and Jessica Fridrich and Ton Kalker},
+  title     = {Digital Watermarking and Steganography},
+  edition   = {2},
+  publisher = {Morgan Kaufmann},
+  year      = {2007},
+  isbn      = {978-0-12-372585-1},
+  abstract  = {Digital audio, video, images, and documents are flying through cyberspace to their respective owners. Unfortunately, along the way, individuals may choose to intervene and take this content for themselves. Digital watermarking and steganography technology greatly reduces the instances of this by limiting or eliminating the ability of third parties to decipher the content that he has taken. The many techniques of digital watermarking (embedding a code) and steganography (hiding information) continue to evolve as applications that necessitate them do the same. This second edition provides an update on the framework for applying these techniques. Steganography and steganalysis (the art of detecting hidden information) have been added to a robust treatment of digital watermarking, as many in each field research and deal with the other. New material includes watermarking with side information, QIM, and dirty-paper codes. Chapters cover introduction; applications and properties; models of watermarking; message coding; watermarking with side information; structured dirty-paper codes; analyzing errors; using perceptual models; robust watermarking; watermark security; content authentication; and steganography and steganalysis.},
+  verify    = {2},
+}
+
+% ============================================================
+% C. 隐蔽通信信息论容量
+% ============================================================
+
+@article{Bash2013,
+  author    = {Boulat A. Bash and Dennis Goeckel and Don Towsley},
+  title     = {Limits of Reliable Communication with Low Probability of Detection on {AWGN} Channels},
+  journal   = {IEEE J. Sel. Areas Commun.},
+  volume    = {31},
+  number    = {9},
+  pages     = {1921--1930},
+  year      = {2013},
+  doi       = {10.1109/JSAC.2013.130923},
+  abstract  = {We present a square root limit on the amount of information transmitted reliably and with low probability of detection (LPD) over additive white Gaussian noise (AWGN) channels. Specifically, if the transmitter has AWGN channels to an intended receiver and a warden, both with non-zero noise power, we prove that o(sqrt(n)) bits can be sent from the transmitter to the receiver in n channel uses while lower-bounding alpha + beta >= 1 - epsilon for any epsilon > 0, where alpha and beta respectively denote the warden's probabilities of a false alarm when the sender is not transmitting and a missed detection when the sender is transmitting. Moreover, in most practical scenarios, a lower bound on the noise power on the channel between the transmitter and the warden is known and O(sqrt(n)) bits can be sent in n LPD channel uses. Conversely, attempting to transmit more than O(sqrt(n)) bits either results in detection by the warden with probability one or a non-zero probability of decoding error at the receiver as n -> infinity.},
+  verify    = {2},
+}
+
+@article{Bloch2016,
+  author    = {Matthieu R. Bloch},
+  title     = {Covert Communication Over Noisy Channels: A Resolvability Perspective},
+  journal   = {IEEE Trans. Inf. Theory},
+  volume    = {62},
+  number    = {5},
+  pages     = {2334--2354},
+  year      = {2016},
+  doi       = {10.1109/TIT.2016.2530089},
+  abstract  = {We analyze the fundamental limits of covert communication over noisy channels in the presence of a warden, who must be kept ignorant of the transmission. We first consider point-to-point communication with a full-duplex receiver and a warden, both observing the transmitted signal through independent discrete memoryless channels (DMCs). We show that the number of bits that can be reliably transmitted over n channel uses while lower-bounding the warden's error probability is O(sqrt(n)); this square-root law holds for arbitrary channels, and we develop an asymptotically achievable bound matching a converse established earlier. We next extend our analysis to channels with positive capacity and show that covert communication is still subject to a square-root law; we also characterize the optimal coding strategy and the corresponding pre-factor. Finally, we show that the results extend to Gaussian channels and the binary symmetric channel.},
+  verify    = {2},
+}
+
+@article{Bash2015Magazine,
+  author    = {Boulat A. Bash and Dennis Goeckel and Saikat Guha and Don Towsley},
+  title     = {Hiding Information in Noise: Fundamental Limits of Covert Wireless Communication},
+  journal   = {IEEE Communications Magazine},
+  volume    = {53},
+  number    = {12},
+  pages     = {26--31},
+  year      = {2015},
+  doi       = {10.1109/MCOM.2015.7355562},
+  abstract  = {While conventional encryption protects the content of a transmission, it does not hide the fact that communication is happening. However, in many critical civilian and military scenarios, the very act of communication can be dangerous. Covert communication aims to hide the transmission itself: a warden observes the channel and tries to detect whether transmission is occurring. In this article we survey the fundamental limits of covert communication, showing that noise plays a dual role -- both as the adversary's mask and the legitimate user's cloak. We introduce the square-root law: on an additive white Gaussian noise channel, no more than O(sqrt(n)) bits can be transmitted reliably over n channel uses while ensuring the warden's optimal detector is reduced to a random guess. We then discuss how the use of an uninformed jammer allows O(n) bits to be transmitted covertly, and we outline practical code design and open challenges.},
+  verify    = {2},
+}
+
+@article{Wang2016FundamentalLimits,
+  author    = {Ligong Wang and Gregory W. Wornell and Lizhong Zheng},
+  title     = {Fundamental Limits of Communication With Low Probability of Detection},
+  journal   = {IEEE Trans. Inf. Theory},
+  volume    = {62},
+  number    = {6},
+  pages     = {3493--3503},
+  year      = {2016},
+  doi       = {10.1109/TIT.2016.2548471},
+  abstract  = {This paper considers the problem of communication over a discrete memoryless channel (DMC) or an additive white Gaussian noise (AWGN) channel subject to the constraint that the probability that an adversary who observes the channel outputs can detect the communication is low. In particular, the relative entropy between the output distributions when a codeword is transmitted and when no input is provided to the channel must be sufficiently small. For a DMC whose output distribution induced by the ``off'' input symbol is not a mixture of the output distributions induced by other input symbols, it is shown that the maximum amount of information that can be transmitted under this criterion scales like the square root of the blocklength. The same is true for the AWGN channel. Exact expressions for the scaling constant are also derived.},
+  verify    = {2},
+}
+
+% ============================================================
+% D. 排队论、Lindley 递推与稳定性
+% ============================================================
+
+@article{Lindley1952,
+  author    = {D. V. Lindley},
+  title     = {The Theory of Queues with a Single Server},
+  journal   = {Math. Proc. Cambridge Philos. Soc.},
+  volume    = {48},
+  number    = {2},
+  pages     = {277--289},
+  year      = {1952},
+  doi       = {10.1017/S0305004100027638},
+  abstract  = {This paper develops a general theory for the single-server queue that does not require the customary assumption of random (Poisson) arrivals. The centre of interest is the waiting times of the customers: the theory establishes the recursion relating successive waiting times and analyzes the resulting stochastic process under very general conditions on the inter-arrival and service-time distributions. The general framework unifies diverse practical applications (from Erlang's telephone-engineering origins to airport design) and specializes to the classical random-arrival results when the additional Poisson assumption is imposed.},
+  verify    = {2},
+}
+
+@article{Foster1953,
+  author    = {F. G. Foster},
+  title     = {On the Stochastic Matrices Associated with Certain Queuing Processes},
+  journal   = {Annals of Mathematical Statistics},
+  volume    = {24},
+  number    = {3},
+  pages     = {355--360},
+  year      = {1953},
+  doi       = {10.1214/aoms/1177728976},
+  abstract  = {The paper is concerned with an irreducible aperiodic Markov chain (``the system''), focusing on the stochastic matrices associated with certain queuing processes. General theorems are first stated which provide criteria -- based on a Lyapunov-type drift condition -- for determining whether the system is transient, recurrent-null, or ergodic (recurrent-nonnull). These criteria are then applied to the Markov chains associated with the queuing processes recently studied by D. G. Kendall; most of the results have already been obtained by Kendall using direct methods, and the main purpose of the present paper is to exhibit them as special cases of a unified drift-based theory.},
+  verify    = {2},
+}
+
+@book{Meyn1993Markov,
+  author    = {Sean P. Meyn and Richard L. Tweedie},
+  title     = {Markov Chains and Stochastic Stability},
+  publisher = {Springer-Verlag},
+  address   = {London},
+  year      = {1993},
+  doi       = {10.1007/978-1-4471-3267-7},
+  abstract  = {This monograph, published in the Communications and Control Engineering Series, develops the theory of Markov chains on general (uncountable) state spaces. The central theme is stochastic stability: the book provides a unified framework -- centered on Lyapunov drift (Foster-type) conditions -- for establishing transience, recurrence, positive recurrence, Harris recurrence, and various notions of ergodicity (ordinary, $f$-ergodicity, geometric ergodicity, $V$-uniform ergodicity). Throughout, the theory is motivated by, and applied to, models from engineering, operations research, and control theory (including nonlinear state-space models), making the book a standard reference for practitioners seeking practical methods of verifying stability of Markovian systems.},
+  verify    = {2},
+}
+
+@book{Asmussen2003,
+  author    = {S{\o}ren Asmussen},
+  title     = {Applied Probability and Queues},
+  edition   = {2},
+  publisher = {Springer},
+  year      = {2003},
+  doi       = {10.1007/b97236},
+  abstract  = {This second edition, volume 51 of the Stochastic Modelling and Applied Probability series, is a comprehensive treatment of applied probability and queueing theory. It covers Markov chains and Markov jump processes, queueing theory at the Markovian level and queueing networks, renewal theory, regenerative processes, random walks, L\'evy processes with reflection and duality, and special models including the steady-state properties of GI/G/1, Markov additive models, many-server queues, exponential change of measure (large deviations), and dams/inventories/insurance risk. Originally published by Wiley in 1987, the second edition adds a substantial amount of new material. It serves both as a graduate textbook and as a reference for researchers in applied probability and stochastic modelling.},
+  verify    = {2},
+}
+
+@article{Loynes1962,
+  author    = {R. M. Loynes},
+  title     = {The Stability of a Queue with Non-Independent Inter-Arrival and Service Times},
+  journal   = {Math. Proc. Cambridge Philos. Soc.},
+  volume    = {58},
+  number    = {3},
+  pages     = {497--520},
+  year      = {1962},
+  doi       = {10.1017/S0305004100036781},
+  abstract  = {The paper studies the stability of single-server queues, queues in series, and many-server queues when the inter-arrival and service times are not required to be independent. A queue is called subcritical if E(S0 - T0) > 0, critical if E(S0 - T0) = 0, and supercritical if E(S0 - T0) < 0. The main results are: (i) subcritical queues are stable; (ii) supercritical queues are unstable; (iii) critical queues may be stable, properly substable, or unstable, and are unstable whenever they are of type M (independent sequences, at least one of which is composed of mutually independent non-constant random variables). Analogous trichotomies are established for queues in series (in terms of their component queues) and for many-server queues (in terms of the consolidated queue).},
+  verify    = {2},
+}
+
+@article{Kingman1970,
+  author    = {J. F. C. Kingman},
+  title     = {Inequalities in the Theory of Queues},
+  journal   = {J. Roy. Statist. Soc. Ser. B},
+  volume    = {32},
+  number    = {1},
+  pages     = {102--110},
+  year      = {1970},
+  doi       = {10.1111/j.2517-6161.1970.tb00819.x},
+  abstract  = {Some simple inequalities are established for the stationary waiting time distribution in the queue GI/G/k, both for the single-server case k = 1 and for general values of k.},
+  verify    = {2},
+}
+
+@book{Durrett2019,
+  author    = {Rick Durrett},
+  title     = {Probability: Theory and Examples},
+  edition   = {5},
+  publisher = {Cambridge University Press},
+  year      = {2019},
+  isbn      = {978-1-108-47368-4},
+  abstract  = {This lively introduction to measure-theoretic probability theory covers laws of large numbers, central limit theorems, random walks, martingales, Markov chains, ergodic theorems, and Brownian motion. Concentrating on results that are the most useful for applications, this comprehensive treatment is a rigorous graduate text and reference. Operating under the philosophy that the best way to learn probability is to see it in action, the book contains extended examples that apply the theory to concrete applications. This fifth edition contains a new chapter on multidimensional Brownian motion and its relationship to partial differential equations (PDEs), an advanced topic that is finding new applications. Setting the foundation for this expansion, Chapter 7 now features a proof of It\^o's formula. Key exercises that previously were simply proofs left to the reader have been directly inserted into the text as lemmas. The new edition re-instates discussion about the central limit theorem for martingales and stationary sequences.},
+  verify    = {2},
+}
+
+% ============================================================
+% E. 信息论基础工具
+% ============================================================
+
+@book{Cover2006,
+  author    = {Thomas M. Cover and Joy A. Thomas},
+  title     = {Elements of Information Theory},
+  edition   = {2},
+  publisher = {Wiley-Interscience},
+  year      = {2006},
+  doi       = {10.1002/047174882X},
+  abstract  = {The Second Edition of this fundamental textbook maintains the book's tradition of clear, thought-provoking instruction. Readers are provided once again with an instructive mix of mathematics, physics, statistics, and information theory. All the essential topics in information theory are covered in detail, including entropy, data compression, channel capacity, rate distortion, network information theory, and hypothesis testing. The authors provide readers with a solid understanding of the underlying theory and applications. Problem sets and a telegraphic summary at the end of each chapter further assist readers, and historical notes recap the main points. The Second Edition features chapters reorganized to improve teaching, 200 new problems, new material on source coding, portfolio theory, and feedback capacity, and updated references. It remains the ideal textbook for upper-level undergraduate and graduate courses in electrical engineering, statistics, and telecommunications.},
+  verify    = {2},
+}
+
+@book{Csiszar2011,
+  author    = {Imre Csisz{\'a}r and J{\'a}nos K{\"o}rner},
+  title     = {Information Theory: Coding Theorems for Discrete Memoryless Systems},
+  edition   = {2},
+  publisher = {Cambridge University Press},
+  year      = {2011},
+  isbn      = {978-0-521-19681-7},
+  abstract  = {Csisz\'ar and K\"orner's book is widely regarded as a classic in the field of information theory, providing deep insights and expert treatment of the key theoretical issues. It presents mathematical models that involve independent random variables with finite range, specifically describing the characteristic phenomena of information theory. Chapter 1 deals with information measures in simple coding problems, with emphasis on some formal properties of Shannon's information and the non-block source coding. Chapter 2 describes the properties and practical aspects of two-terminal systems, including the noisy channel coding problem, the computation of channel capacity, and arbitrarily varying channels. Chapter 3 looks into the theory and practicality of multi-terminal systems. Updated and considerably expanded, the new (second) edition presents unique discussions of information theoretic secrecy and of zero-error information theory, including the deep connections of the latter to combinatorics. The book is intended primarily for graduate students and research workers in mathematics, electrical engineering, and computer science.},
+  verify    = {2},
+}
+
+@article{HanVerdu1993,
+  author    = {Te Sun Han and Sergio Verd{\'u}},
+  title     = {Approximation Theory of Output Statistics},
+  journal   = {IEEE Trans. Inf. Theory},
+  volume    = {39},
+  number    = {3},
+  pages     = {752--772},
+  year      = {1993},
+  doi       = {10.1109/18.256486},
+  abstract  = {Given a channel and an input process with output statistics that approximate the original output statistics with arbitrary accuracy, the randomness of the input processes is studied. The notion of resolvability of a channel, defined as the number of random bits required per channel use in order to generate an input that achieves arbitrarily accurate approximation of the output statistics for any given input process, is introduced. A general formula for resolvability that holds regardless of the channel memory structure is obtained. It is shown that for most channels, resolvability is equal to the Shannon capacity. By-products of the analysis are a general formula for the minimum achievable source coding rate of any finite-alphabet source and a strong converse of the identification coding theorem, which holds for any channel that satisfies the strong converse of the channel coding theorem.},
+  verify    = {2},
+}
+
+@book{Pinsker1964,
+  author    = {M. S. Pinsker},
+  title     = {Information and Information Stability of Random Variables and Processes},
+  publisher = {Holden-Day},
+  address   = {San Francisco},
+  year      = {1964},
+  abstract  = {This book, translated and annotated by Amiel Feinstein from the original Russian, is the foundational English-language exposition of the information-stability framework for random variables and stochastic processes. It develops the notions of $\varepsilon$-entropy and $\varepsilon$-capacity, the rate of information generation, and information stability for both discrete and continuous random variables and processes, including stationary, ergodic, and Markov cases. The book is the primary source for what is now known as Pinsker's inequality bounding total variation by relative entropy (Kullback--Leibler divergence), and more generally establishes the variational characterization of information measures that underpins much of modern information-theoretic statistics and secrecy.},
+  verify    = {2},
+}
+
+@article{Massart1990,
+  author    = {Pascal Massart},
+  title     = {The Tight Constant in the {Dvoretzky--Kiefer--Wolfowitz} Inequality},
+  journal   = {Annals of Probability},
+  volume    = {18},
+  number    = {3},
+  pages     = {1269--1283},
+  year      = {1990},
+  doi       = {10.1214/aop/1176990746},
+  abstract  = {In 1956 Dvoretzky, Kiefer and Wolfowitz proved that $P(\sqrt{n}\sup_x(\hat{F}_n(x)-F(x))>\lambda)\le C\exp(-2\lambda^2)$, where $C$ is some unspecified constant. The purpose of the present note is to establish that the inequality holds with the explicit constant $C = 2$, that is, $P(\sqrt{n}\sup_x|\hat{F}_n(x)-F(x)|>\lambda)\le 2\exp(-2\lambda^2)$. Moreover, the constant 2 is shown to be tight: it cannot be improved. The proof builds on a martingale argument of Dvoretzky, Kiefer and Wolfowitz refined via Kolmogorov's exact distribution of the empirical process.},
+  verify    = {2},
+}
+
+@book{Tsybakov2009,
+  author    = {Alexandre B. Tsybakov},
+  title     = {Introduction to Nonparametric Estimation},
+  series    = {Springer Series in Statistics},
+  publisher = {Springer},
+  address   = {New York},
+  year      = {2009},
+  doi       = {10.1007/b13794},
+  abstract  = {Methods of nonparametric estimation are located at the core of modern statistical science. The aim of this book is to give a short but mathematically self-contained introduction to the theory of nonparametric estimation, with emphasis on the construction of optimal estimators. The concepts of minimax optimality and adaptivity, as well as the oracle approach, occupy the central place. The book has three chapters: Chapter 1 presents basic nonparametric regression and density estimators and analyzes their properties; Chapter 2 is devoted to a detailed treatment of minimax lower bounds (including the two-point and many-point methods, Fano and Le Cam's lemma); Chapter 3 develops more advanced topics -- Pinsker's theorem, oracle inequalities, Stein shrinkage, and sharp minimax adaptivity.},
+  verify    = {2},
+}
+
+% ============================================================
+% F. 喷泉码与纠删信道
+% ============================================================
+
+@inproceedings{Luby2002LT,
+  author    = {Michael Luby},
+  title     = {{LT} Codes},
+  booktitle = {Proc. 43rd Annu. IEEE Symp. Foundations of Computer Science (FOCS)},
+  year      = {2002},
+  pages     = {271--280},
+  doi       = {10.1109/SFCS.2002.1181950},
+  abstract  = {We introduce LT codes, the first rateless erasure codes that are very efficient as the data length grows. LT codes are the first realization of a class of erasure codes that we call universal erasure codes: the symbol length for the codes can be arbitrary, from one-bit binary symbols to general l-bit symbols. We analyze the run time of the encoder and decoder in terms of symbol operations, where a symbol operation is either an exclusive-or of one symbol into another or a copy of one symbol to another. If the original data consists of k input symbols then each encoding symbol can be generated, independently of all other encoding symbols, on average by O(log k) symbol operations, and the original k input symbols can be recovered from any k + O(sqrt(k) log^2(k/r)/r) of the encoding symbols with probability 1 - r by on average O(k log(k/r)) symbol operations.},
+  verify    = {2},
+}
+
+@article{Shokrollahi2006Raptor,
+  author    = {Amin Shokrollahi},
+  title     = {Raptor Codes},
+  journal   = {IEEE Trans. Inf. Theory},
+  volume    = {52},
+  number    = {6},
+  pages     = {2551--2567},
+  year      = {2006},
+  doi       = {10.1109/TIT.2006.874390},
+  abstract  = {LT-codes are a new class of codes introduced by Luby for the purpose of scalable and fault-tolerant distribution of data over computer networks. In this paper, we introduce Raptor codes, an extension of LT-codes with linear time encoding and decoding. We will exhibit a class of universal Raptor codes: for a given integer k and any real epsilon > 0, Raptor codes in this class produce a potentially infinite stream of symbols such that any subset of symbols of size k(1+epsilon) is sufficient to recover the original k symbols with high probability. Each output symbol is generated using O(log(1/epsilon)) operations, and the original symbols are recovered from the collected ones with O(k log(1/epsilon)) operations. We will also introduce novel techniques for the analysis of the error probability of the decoder for finite length Raptor codes. Moreover, we will introduce and analyze systematic versions of Raptor codes, i.e., versions in which the first output elements of the coding system coincide with the original k elements.},
+  verify    = {2},
+}
+
+% ============================================================
+% G. 网络流量统计与流量分析
+% ============================================================
+
+@article{Paxson1995WideArea,
+  author    = {Vern Paxson and Sally Floyd},
+  title     = {Wide-Area Traffic: The Failure of {Poisson} Modeling},
+  journal   = {IEEE/ACM Trans. Networking},
+  volume    = {3},
+  number    = {3},
+  pages     = {226--244},
+  year      = {1995},
+  doi       = {10.1109/90.392383},
+  abstract  = {Network arrivals are often modeled as Poisson processes for analytic simplicity, even though a number of traffic studies have shown that packet interarrivals are not exponentially distributed. We evaluate 24 wide area traces, investigating a number of wide area TCP arrival processes (session and connection arrivals, FTP data connection arrivals within FTP sessions, and TELNET packet arrivals) to determine the error introduced by modeling them using Poisson processes. We find that user-initiated TCP session arrivals, such as remote-login and file-transfer, are well-modeled as Poisson processes with fixed hourly rates, but that other connection arrivals deviate considerably from Poisson; that modeling TELNET packet interarrivals as exponential grievously underestimates the burstiness of TELNET traffic, but using the empirical Tcplib interarrivals preserves burstiness over many time scales; and that FTP data connection arrivals within FTP sessions come bunched into ``connection bursts'', the largest of which are so large that they completely dominate FTP data traffic. Finally, we offer some results regarding how our findings relate to the possible self-similarity of wide area traffic.},
+  verify    = {2},
+}
+
+@inproceedings{Lashkari2017Tor,
+  author    = {Arash {Habibi Lashkari} and Gerard {Draper Gil} and Mohammad Saiful Islam Mamun and Ali A. Ghorbani},
+  title     = {Characterization of Tor Traffic Using Time Based Features},
+  booktitle = {Proc. 3rd Int. Conf. Information Systems Security and Privacy (ICISSP)},
+  address   = {Porto, Portugal},
+  year      = {2017},
+  pages     = {253--262},
+  doi       = {10.5220/0006105602530262},
+  note      = {Dataset: ISCXTor2016, \url{https://www.unb.ca/cic/datasets/tor.html}},
+  abstract  = {Traffic classification has been the topic of many research efforts, but the quick evolution of Internet services and the pervasive use of encryption makes it an open challenge. Encryption is essential in protecting the privacy of Internet users, a key technology used in the different privacy enhancing tools that have appeared in the recent years. Tor is one of the most popular of them, it decouples the sender from the receiver by encrypting the traffic between them, and routing it through a distributed network of servers. In this paper, we present a time analysis on Tor traffic flows, captured between the client and the entry node. We define two scenarios, one to detect Tor traffic flows and the other to detect the application type: Browsing, Chat, Streaming, Mail, Voip, P2P or File Transfer. In addition, with this paper we publish the Tor labelled dataset we generated and used to test our classifiers.},
+  verify    = {2},
+}
+
+@inproceedings{DraperGil2016VPN,
+  author    = {Gerard {Draper Gil} and Arash {Habibi Lashkari} and Mohammad Saiful Islam Mamun and Ali A. Ghorbani},
+  title     = {Characterization of Encrypted and {VPN} Traffic Using Time-Related Features},
+  booktitle = {Proc. 2nd Int. Conf. Information Systems Security and Privacy (ICISSP)},
+  address   = {Rome, Italy},
+  year      = {2016},
+  pages     = {407--414},
+  doi       = {10.5220/0005740704070414},
+  note      = {Dataset: ISCXVPN2016, \url{https://www.unb.ca/cic/datasets/vpn.html}},
+  abstract  = {Traffic characterization is one of the major challenges in today's security industry. The continuous evolution and generation of new applications and services, together with the expansion of encrypted communications makes it a difficult task. Virtual Private Networks (VPNs) are an example of encrypted communication service that is becoming popular, as method for bypassing censorship as well as accessing services that are geographically locked. In this paper, we study the effectiveness of flow-based time-related features to detect VPN traffic and to characterize encrypted traffic into different categories, according to the type of traffic e.g., browsing, streaming, etc. We use two different well-known machine learning techniques (C4.5 and KNN) to test the accuracy of our features. Our results show high accuracy and performance, confirming that time-related features are good classifiers for encrypted traffic characterization.},
+  verify    = {2},
+}
+
+@inproceedings{HabibiLashkari2020Darknet,
+  author    = {Arash {Habibi Lashkari} and Gurdip Kaur and Abir Rahali},
+  title     = {{DIDarknet}: A Contemporary Approach to Detect and Characterize the Darknet Traffic using Deep Image Learning},
+  booktitle = {Proc. 10th Int. Conf. Communication and Network Security (CNS)},
+  address   = {Tokyo, Japan},
+  year      = {2020},
+  doi       = {10.1145/3442520.3442521},
+  note      = {Dataset: CIC-Darknet2020, \url{https://www.unb.ca/cic/datasets/darknet2020.html}},
+  abstract  = {Darknet traffic classification is significantly important to categorize real-time applications. Although there are notable efforts to classify darknet traffic which rely heavily on existing datasets and machine learning classifiers, there are extremely few efforts to detect and characterize darknet traffic using deep learning. This work proposes a novel approach, named DeepImage, which uses feature selection to pick the most important features to create a gray image and feed it to a two-dimensional convolutional neural network to detect and characterize darknet traffic. Two encrypted traffic datasets are merged to create a darknet dataset to evaluate the proposed approach which successfully characterizes darknet traffic with 86\% accuracy.},
+  verify    = {2},
+}
+
+@inproceedings{Nasr2018DeepCorr,
+  author    = {Milad Nasr and Alireza Bahramali and Amir Houmansadr},
+  title     = {{DeepCorr}: Strong Flow Correlation Attacks on {Tor} Using Deep Learning},
+  booktitle = {Proc. ACM Conf. Computer and Communications Security (CCS)},
+  year      = {2018},
+  pages     = {1962--1976},
+  doi       = {10.1145/3243734.3243824},
+  abstract  = {Flow correlation is the core technique used in a multitude of deanonymization attacks on Tor. Despite the importance of flow correlation attacks on Tor, existing flow correlation techniques are considered to be ineffective and unreliable in linking Tor flows when applied at a large scale, i.e., they impose high rates of false positive error rates or require impractically long flow observations to be able to make reliable correlations. In this paper, we show that, unfortunately, flow correlation attacks can be conducted on Tor traffic with drastically higher accuracies than before by leveraging emerging learning mechanisms. We particularly design a system, called DeepCorr, that outperforms the state-of-the-art by significant margins in correlating Tor connections. DeepCorr leverages an advanced deep learning architecture to learn a flow correlation function tailored to Tor's complex network---this is in contrast to previous works' use of generic statistical correlation metrics to correlate Tor flows. We show that with moderate learning, DeepCorr can correlate Tor connections (and therefore break its anonymity) with accuracies significantly higher than existing algorithms, and using substantially shorter lengths of flow observations. For instance, by collecting only about 900 packets of each target Tor flow (roughly 900KB of Tor data), DeepCorr provides a flow correlation accuracy of 96\% compared to 4\% by the state-of-the-art system of RAPTOR using the same exact setting. We hope that our work demonstrates the escalating threat of flow correlation attacks on Tor given recent advances in learning algorithms, calling for the timely deployment of effective countermeasures by the Tor community.},
+  verify    = {2},
+}
+
+% ============================================================
+% H. 自引用配套工作 (待替换为正式投稿条目)
+% ============================================================
+
+@unpublished{Cao2024Cyclic,
+  author = {Jiuxiang Cao and others},
+  title  = {Cyclic-Frame {IPD}-{QIM} Watermarking with Variance-Free Soft Demodulation and Per-Frame Re-Anchoring for Multi-Hop Encrypted Networks},
+  note   = {Companion paper, manuscript in preparation},
+  year   = {2025},
+}
+
+@unpublished{Cao2024Feedback,
+  author = {Jiuxiang Cao and others},
+  title  = {On the Necessity of Feedback Control for {IPD} Flow Watermarking: A Lindley Recursion Perspective with Tight Covertness--Stability--Distortion Tradeoff},
+  note   = {Companion paper, manuscript in preparation},
+  year   = {2025},
+}
+
+@unpublished{Cao2024InfoBounds,
+  author = {Jiuxiang Cao and others},
+  title  = {Information-Theoretic Bounds for {IPD} Flow Watermarking: Engineering Sufficient Conditions, Active-Attack Lower Bounds, and Passive Correlation Rate},
+  note   = {Companion paper, manuscript in preparation},
+  year   = {2025},
+}
+
+% ============================================================
+% I. 近年流量关联攻击与流水印（2022--2025，已逐篇核实）
+% ============================================================
+
+@inproceedings{Oh2022DeepCoFFEA,
+  author    = {Se Eun Oh and Taiji Yang and Nate Mathews and James K. Holland and Mohammad Saidur Rahman and Nicholas Hopper and Matthew Wright},
+  title     = {{DeepCoFFEA}: Improved Flow Correlation Attacks on {Tor} via Metric Learning and Amplification},
+  booktitle = {Proc. 43rd IEEE Symposium on Security and Privacy (S\&P)},
+  year      = {2022},
+  pages     = {1915--1932},
+  doi       = {10.1109/SP46214.2022.9833801},
+  abstract  = {Flow correlation attacks seek to link a flow at one location in the Tor network to a flow at another location, breaking the anonymity provided by the network. Prior flow correlation attacks have not been a significant threat to Tor, as they have relatively low accuracy, require long flow observations, or scale poorly. In this paper, we introduce DeepCoFFEA, a new flow correlation attack that uses deep metric learning to robustly and efficiently correlate flows across the Tor network. DeepCoFFEA uses a pair of deep neural networks to extract features from short windows of Tor traffic; these features are then aggregated to make a correlation decision. We show that DeepCoFFEA significantly outperforms prior work, achieving 91--93\% true positive rate at 0.1\% false positive rate using only 900 packets per flow. We also introduce a new amplification strategy that can scale to correlate millions of flows with low computational overhead, an important capability for large-scale attacks on Tor. We conduct extensive experiments to evaluate DeepCoFFEA under a variety of real-world conditions and show that it is robust to common network defenses.},
+  verify    = {2},
+}
+
+@inproceedings{Lopes2024SUMo,
+  author    = {Daniela Lopes and Jin-Dong Dong and Daniel Castro and Pedro Medeiros and Daniel Barradas and Bernardo Portela and Jo{\~a}o Vinagre and Bernardo Ferreira and Nicolas Christin and Nuno Santos},
+  title     = {Flow Correlation Attacks on {Tor} Onion Service Sessions with Sliding Subset Sum},
+  booktitle = {Proc. 32nd Network and Distributed System Security Symposium (NDSS)},
+  year      = {2024},
+  address   = {San Diego, CA},
+  month     = feb,
+  abstract  = {Tor is one of the most popular anonymity networks in use today. Its ability to defend against flow correlation attacks is essential for providing strong anonymity guarantees. However, the feasibility of flow correlation attacks against Tor onion services (formerly known as ``hidden services'') has remained an open challenge. In this paper, we present an effective flow correlation attack that can deanonymize onion service sessions in the Tor network. Our attack is based on a novel distributed technique named Sliding Subset Sum (SUMo), which can be deployed by a group of colluding ISPs worldwide in a federated fashion. These ISPs collect Tor traffic at multiple vantage points in the network, and analyze it through a pipelined architecture based on machine learning classifiers and a novel similarity function based on the classic subset sum decision problem. These classifiers enable SUMo to deanonymize onion service sessions effectively and efficiently. We also analyze possible countermeasures that the Tor community can adopt to hinder the efficacy of these attacks.},
+  verify    = {2},
+}
+
+@inproceedings{Chawla2024ESPRESSO,
+  author    = {Tisha Chawla and Shubh Mittal and Nate Mathews and Matthew Wright},
+  title     = {{ESPRESSO}: Advanced End-to-End Flow Correlation Attacks on {Tor}},
+  booktitle = {Proc. 8th Asia-Pacific Workshop on Networking (APNet), co-located with ACM SIGCOMM},
+  year      = {2024},
+  address   = {Sydney, Australia},
+  doi       = {10.1145/3663408.3665824},
+  abstract  = {Anonymous communication networks such as Tor are vulnerable to end-to-end flow correlation, which allows an eavesdropper to link a client with their destination by identifying pairs for network flows that belong to the same circuit. However, existing approaches, while having high accuracy, suffer from a high false positive rate and computational complexity as well as low sensitivity. In this paper, we propose ESPRESSO, a new method designed for Tor traffic correlation attacks that build upon the state-of-the-art DeepCoFFEA. We utilize an aggregated feature representation and we employ Transformers for global processing to capture long-range dependencies. Furthermore, we use an improved window-based amplification strategy to improve performance further. Our preliminary results show significant performance gains over the prior state-of-the-art DeepCoFFEA.},
+  verify    = {2},
+}
+
+@inproceedings{Shen2023RobustWF,
+  author    = {Meng Shen and Kexin Ji and Zhenbo Gao and Qi Li and Liehuang Zhu and Ke Xu},
+  title     = {Subverting Website Fingerprinting Defenses with Robust Traffic Representation},
+  booktitle = {Proc. 32nd USENIX Security Symposium},
+  year      = {2023},
+  pages     = {607--624},
+  doi       = {10.5555/3620237.3620272},
+  abstract  = {Anonymity networks, e.g., Tor, are vulnerable to various website fingerprinting (WF) attacks, which allows attackers to perceive user privacy on these networks. However, the defenses developed recently can effectively interfere with WF attacks, e.g., by simply injecting dummy packets. In this paper, we propose a novel WF attack called Robust Fingerprinting (RF), which enables an attacker to fingerprint the Tor traffic under various defenses. Specifically, we develop a robust traffic representation method that generates Traffic Aggregation Matrix (TAM) to fully capture key informative features leaked from Tor traces. By utilizing TAM, an attacker can train a CNN-based classifier that learns common high-level traffic features uncovered by different defenses. We conduct extensive experiments with public real-world datasets to compare RF with state-of-the-art (SOTA) WF attacks. The closed- and open-world evaluation results demonstrate that RF significantly outperforms the SOTA attacks. In particular, RF can effectively fingerprint Tor traffic under the SOTA defenses with an average accuracy improvement of 8.9\% over the best existing attack (i.e., Tik-Tok).},
+  verify    = {2},
+}
+
+@article{Li2022HeteroTiC,
+  author  = {Tengyao Li and Kaiyue Liu and Wangxin Feng and Chunfang Yang and Xiangyang Luo},
+  title   = {{HeteroTiC}: A Robust Network Flow Watermarking Based on Heterogeneous Time Channels},
+  journal = {Computer Networks},
+  volume  = {219},
+  pages   = {109424},
+  year    = {2022},
+  doi     = {10.1016/j.comnet.2022.109424},
+  abstract = {Tracking back stealthy attackers is still a great challenge in face of complicated Internet environments and increased attacker capabilities. As a possible solution, network flow watermarking has been developed to embed attack labels actively in data flows, trying to identify the attack source accurately in time. However, due to the influences of uncertain network noises, the robustness of watermarking cannot be ensured efficiently in case of non-cooperative network scenarios currently. Meanwhile, it is difficult to enhance robustness and covertness simultaneously when suffering from severe network noises. Thus, a robust network flow watermarking based on Heterogeneous Time Channels (HeteroTiC) is proposed, for which packet order, packet timing and packet size constitute heterogeneous time channels to carry watermarks. The beginning positions are located by packet order to support accurate synchronization, the long watermark sequences are carried by inter-packet delays to improve capabilities against packet dropping and time jitter, the mapping relationships for the watermark sequences on heterogeneous time channels are mixed by packet size of the flow itself to enhance covertness. With multiple layers design of watermarking, HeteroTiC is designed to accomplish fast detection and accurate extraction on watermarks. By experiments, the average detection accuracy reaches 100\% and the average extraction accuracy is validated with 94.2\%. Furthermore, the same mapping pattern on multiple flows only accounts for 8.11\%, which validates the covertness against multiple flow similarities. The extraction accuracy exceeds 9.76\%--18.1\% in comparison with classical watermarking methods, which validates the robustness under network noises in Internet.},
+  verify  = {2},
+}
+
+@article{Gong2013Invisible,
+  author  = {Xun Gong and Mavis Rodrigues and Negar Kiyavash},
+  title   = {Invisible Flow Watermarks for Channels with Dependent Substitution, Deletion, and Bursty Insertion Errors},
+  journal = {IEEE Trans. Inf. Forensics Security},
+  volume  = {8},
+  number  = {11},
+  pages   = {1850--1859},
+  year    = {2013},
+  doi     = {10.1109/TIFS.2013.2279794},
+  abstract = {Flow watermarks efficiently link packet flows in a network in order to thwart various attacks such as stepping stones. We study the problem of designing good flow watermarks. Earlier flow watermarking schemes mostly considered substitution errors, neglecting the effects of packet insertions and deletions that commonly happen within a network. More recent schemes consider packet deletions but often at the expense of the watermark visibility. We present an invisible flow watermarking scheme capable of enduring a large number of packet losses and insertions. To maintain invisibility, our scheme uses quantization index modulation (QIM) to embed the watermark into inter-packet delays, as opposed to time intervals including many packets. As the watermark is injected within individual packets, packet losses and insertions may lead to watermark desynchronization and substitution errors. To address this issue, we add a layer of error-correction coding to our scheme. Experimental results on both synthetic and real network traces demonstrate that our scheme is robust to network jitter, packet drops and splits, while remaining invisible to an attacker.},
+  verify  = {2},
+}
+
+@article{Iacovazzi2018DropWat,
+  author  = {Alfonso Iacovazzi and Sanat Sarda and Daniel Frassinelli and Yuval Elovici},
+  title   = {{DropWat}: An Invisible Network Flow Watermark for Data Exfiltration Traceback},
+  journal = {IEEE Trans. Inf. Forensics Security},
+  volume  = {13},
+  number  = {5},
+  pages   = {1139--1154},
+  year    = {2018},
+  doi     = {10.1109/TIFS.2017.2779113},
+  abstract = {Watermarking techniques have been proposed during the last 10 years as an approach to trace network flows for intrusion detection purposes. These techniques aim to impress a hidden signature on a traffic flow. A central property of network flow watermarking is invisibility, i.e., the ability to go unidentified by an unauthorized third party. Although widely sought after, the development of an invisible watermark is a challenging task that has not yet been accomplished. In this paper we take a step forward in addressing the invisibility problem with DROPWAT, an active network flow watermarking technique developed for tracing Internet flows directed to the staging server that is the final destination in a data exfiltration attack, even in the presence of several intermediate stepping stones or an anonymous network. DROPWAT is a timing-based technique that indirectly modifies interpacket delays by exploiting network reaction to packet loss. We empirically demonstrate that the watermark embedded by means of DROPWAT is invisible to a third party observing the watermarked traffic. We also validate DROPWAT and analyze its performance in a controlled experimental framework involving the execution of a series of experiments on the Internet, using Web proxy servers as stepping stones executed on several instances in Amazon Web Services, as well as the TOR anonymous network in the place of the stepping stones. Our results show that the detection algorithm is able to identify an embedded watermark achieving over 95\% accuracy while being invisible.},
+  verify  = {2},
+}
+
+@article{Yang2022SlidingTor,
+  author  = {Kai Yang and Zhihong Liu and Yong Zeng and Jianfeng Ma},
+  title   = {Sliding Window Based {ON/OFF} Flow Watermarking on {Tor}},
+  journal = {Computer Communications},
+  volume  = {196},
+  pages   = {66--75},
+  year    = {2022},
+  doi     = {10.1016/j.comcom.2022.09.028},
+  abstract = {To analyze traffic in the anonymity network, an active network flow watermark scheme, the ON/OFF watermarking, is proposed to embed timing information into the network flow. This scheme exploits a technique that drops packets at prescribed time intervals to create a watermark sequence at the sending side of a flow, then extracts inter-packet delay at the receiving side, and computes the L1 distance between generated sequences to identify the network flow. A sliding window based L1 distance computation algorithm is proposed to detect flow watermark at a low overhead. Experimental results demonstrate that this timing-based flow watermarking scheme can identify watermarks efficiently and is resistant to timing disturbances in Tor.},
+  verify  = {2},
+}
+
+@article{Cui2023Hex,
+  author  = {Jun Cui and Keya Han and Lin Sha and Wei Liu and Xiaofeng Zhang and Guangxu Li},
+  title   = {An Efficient Hexadecimal Network Flow Watermark Method for Tracking Attack Traffic Connection Chain},
+  journal = {Scientific Reports},
+  volume  = {13},
+  pages   = {21111},
+  year    = {2023},
+  doi     = {10.1038/s41598-023-48552-0},
+  abstract = {Network flow watermark technology is a traffic marking technique that embeds watermark information into the characteristics of network flows to mark and trace attack flows generated by network attackers. However, with the development of network attack techniques, the time and number of packets required for network attacks have decreased. Existing network flow watermark technologies fail to balance watermark robustness and efficiency, resulting in poor practicality. To address this issue, this paper proposes an efficient hexadecimal network flow watermark method. The method introduces an efficient interval watermark algorithm and utilizes an interval synchronization algorithm to self-learn watermark parameters, thereby improving the encoding efficiency of the watermark. The design of watermark start and end markers ensures the practicality of network watermarks, enabling traceability and source attribution of attack flows in real network environments. The proposed method is experimentally tested using real network traffic, and the results demonstrate that even in the presence of a network jitter, the watermark detection success rate of this scheme remains above 95\%. Compared to other network flow watermark schemes, the hexadecimal network flow watermark proposed in this paper achieves a 50\% improvement in encoding and decoding efficiency while ensuring robustness. It also exhibits excellent resistance to network jitter, packet loss, and false packet insertion.},
+  verify  = {2},
+}
+
+@article{Qiao2025DynMark,
+  author  = {Sibo Qiao and Haohao Zhu and Lin Sha and Min Wang and Qiang Guo},
+  title   = {{DynMark}: A Dynamic Packet Counting Watermarking Scheme for Robust Traffic Tracing in Network Flows},
+  journal = {Computers \& Security},
+  volume  = {157},
+  pages   = {104571},
+  year    = {2025},
+  doi     = {10.1016/j.cose.2025.104571},
+  abstract = {To locate malicious attack sources and enhance network defense capabilities, traffic tracing has become a critical technology for defending against network attacks. Existing methods, such as IP address tracing and network flow watermarking, often fail to trace attackers using encrypted channels or network obfuscation techniques. Although watermarking can embed traceable features, its performance degrades in complex environments with delay jitter and packet loss. To address these issues, we propose a novel dynamic watermarking method based on packet count and timing, called DynMark. This method adaptively modulates packet count and timing to construct a multidimensional watermark carrier, thereby enhancing traffic tracking and tracing capabilities and enabling effective tracking of attack traffic in complex network environments. In addition, to ensure watermark synchronization accuracy, we design a dynamic synchronization tag to guarantee precise synchronization of the watermark's time window. Moreover, considering that non-continuous data flows may lead to inaccurate watermark detection, we further propose a robust error correction mechanism based on fountain codes and error-correcting codes, which significantly enhances the robustness of the watermarking method and ensures the accuracy of data transmission. Experimental results show that under interference conditions such as high delay jitter, packet loss, and chaff packet insertion, DynMark maintains an accuracy rate of over 90\%. Compared with state-of-the-art watermarking methods, DynMark achieves an approximate 4\% improvement in accuracy. In addition, DynMark successfully passes the K-S test, demonstrating its invisibility.},
+  verify  = {2},
+}
+
+@article{Li2026Survey,
+  author  = {Tengyao Li and Kaiyue Liu and Shaoyong Du},
+  title   = {A Survey on Network Flow Watermarking: A Problem-Oriented Perspective},
+  journal = {Computers \& Security},
+  year    = {2026},
+  doi     = {10.1016/j.cose.2025.104813},
+  abstract = {Network flow watermarking is an active tracing approach by embedding the source node identity information into network flows invisibly. The embedded watermarks coexist with the original network traffic, which are designed with robustness against network noises and active interferences. In recent years, network flow watermarking enters a phase of profound development in face of various challenges on practical applications (e.g.\ deanonymization, data leakage tracing, malicious behavior monitoring) in Internet. However, to our best knowledge, there are very few surveys for the network flow watermarking methods after 2018, for which the systematic survey covering the entire developments is absent. Meanwhile, current surveys classify and analyze network flow watermarking based on embedding patterns, which ignore different methods correlations on critical problems for watermarking. To this end, the paper reviews and analyzes the papers from 2001 to 2025 on network flow watermarking in perspective of problem-orientations. The threat model and theoretical framework are established to model the watermarking embedding and detecting procedures, which offer a consistent model for watermarking design. From three core problems on robustness, invisibility and adaptation, network flow watermarking methods are classified into different solutions to these problems, which depict an explicit network flow watermarking development roadmap. For sake of facilitating practical applications, five open problems as the critical challenges are discussed, providing references for the future work on network flow watermarking.},
+  verify  = {2},
+}
+
+@unpublished{Cao2026CausalQIM,
+  author = {Jiuxiang Cao and others},
+  title  = {Internal Mechanism of {IPD}-{QIM} Queue Modulation under the Causal Constraint: Stability, Distortion Probability, and Robustness to Bursty Traffic},
+  note   = {Companion paper (queueing-theory analysis)},
+  year   = {2026},
+}
+
+@book{Glaz2001Scan,
+  author    = {Joseph Glaz and Joseph Naus and Sylvan Wallenstein},
+  title     = {Scan Statistics},
+  series    = {Springer Series in Statistics},
+  publisher = {Springer-Verlag},
+  address   = {New York},
+  year      = {2001},
+  doi       = {10.1007/978-1-4757-3460-7},
+  abstract  = {This monograph in the Springer Series in Statistics gives a broad and up-to-date coverage of scan statistics -- the statistics used to analyze observed clusters of events in time or space, and to determine whether an observed cluster has occurred by chance under a null model of independent, uniformly distributed events. The book develops exact results, approximations, and bounds for both retrospective and prospective scanning over time, success scans in a sequence of trials, higher-dimensional scans, and scan statistics for DNA/protein sequence analysis, Poisson processes, and discrete i.i.d. sequences. Applications span geology, geography, medicine, minefield detection, molecular biology, photography, quality control, and reliability theory. The book is intended for researchers in applied probability and statistics as well as for scientists using probability models in their research, and is suitable for a graduate-level course.},
+  verify    = {2},
+}
+
+@article{Paxson1999E2E,
+  author    = {Vern Paxson},
+  title     = {End-to-End Internet Packet Dynamics},
+  journal   = {IEEE/ACM Trans. Networking},
+  volume    = {7},
+  number    = {3},
+  pages     = {277--292},
+  year      = {1999},
+  doi       = {10.1109/90.779192},
+  abstract  = {We discuss findings from a large-scale study of Internet packet dynamics conducted by tracing 20000 TCP bulk transfers between 35 Internet sites. Because we traced each 100-kbyte transfer at both the sender and the receiver, the measurements allow us to distinguish between the end-to-end behavior due to the different directions of the Internet paths, which often exhibit asymmetries. We: (1) characterize the prevalence of unusual network events such as out-of-order delivery and packet replication; (2) discuss a robust receiver-based algorithm for estimating ``bottleneck bandwidth'' that addresses deficiencies discovered in techniques based on ``packet pair;'' (3) investigate patterns of packet loss, finding that loss events are not well modeled as independent and, furthermore, that the distribution of the duration of loss events exhibits infinite variance; and (4) analyze variations in packet transit delays as indicators of congestion periods, finding that congestion periods also span a wide range of time scales.},
+  verify    = {2},
+}
+
+@article{Bennett1999Reorder,
+  author    = {Jon C. R. Bennett and Craig Partridge and Nicholas Shectman},
+  title     = {Packet Reordering is Not Pathological Network Behavior},
+  journal   = {IEEE/ACM Trans. Networking},
+  volume    = {7},
+  number    = {6},
+  pages     = {789--798},
+  year      = {1999},
+  doi       = {10.1109/90.811445},
+  abstract  = {It is a widely held belief that packet reordering in the Internet is a pathological behavior, or more precisely, that it is an uncommon behavior caused by incorrect or malfunctioning network components. Some studies of Internet traffic have reported seeing occasional packet reordering events and ascribed these events to ``route fluttering'', router ``pauses'' or simply to broken equipment. We have found, however, that parallelism in Internet components and links is causing packet reordering under normal operation and that the incidence of packet reordering appears to be substantially higher than previously reported. More importantly, we observe that in the presence of massive packet reordering transmission control protocol (TCP) performance can be profoundly effected. Perhaps the most disturbing observation about TCP's behavior is that large scale and largely random reordering on the part of the network can lead to self-reinforcingly poor performance from TCP.},
+  verify    = {2},
+}
+
+@misc{RFC3393,
+  author       = {C. Demichelis and P. Chimento},
+  title        = {{IP Packet Delay Variation Metric for IP Performance Metrics (IPPM)}},
+  howpublished = {{RFC} 3393},
+  year         = {2002},
+  note         = {\url{https://www.rfc-editor.org/rfc/rfc3393}},
+  abstract     = {This document refers to a metric for variation in delay of packets across Internet paths. The metric is based on the difference in the One-Way-Delay of selected packets. This difference in delay is called ``IP Packet Delay Variation (ipdv)''. The metric is valid for measurements between two hosts both in the case that they have synchronized clocks and in the case that they are not synchronized; both cases are discussed.},
+  verify       = {2},
+}
+
+@article{ChenWornell2001QIM,
+  author  = {Brian Chen and Gregory W. Wornell},
+  title   = {Quantization Index Modulation: A Class of Provably Good Methods for Digital Watermarking and Information Embedding},
+  journal = {IEEE Trans. Inf. Theory},
+  volume  = {47}, number = {4}, pages = {1423--1443}, year = {2001},
+  doi     = {10.1109/18.923725},
+  abstract = {We consider the problem of embedding one signal (e.g., a digital watermark), within another ``host'' signal to form a third, ``composite'' signal. The embedding is designed to achieve efficient tradeoffs among the three conflicting goals of maximizing the information-embedding rate, minimizing the distortion between the host signal and composite signal, and maximizing the robustness of the embedding. We introduce new classes of embedding methods, termed quantization index modulation (QIM) and distortion-compensated QIM (DC-QIM), and develop convenient realizations in the form of what we refer to as dither modulation. Using deterministic models to evaluate digital watermarking methods, we show that QIM is ``provably good'' against arbitrary bounded and fully informed attacks, which arise in several copyright applications, and in particular it achieves provably better rate distortion-robustness tradeoffs than currently popular spread-spectrum and low-bit(s) modulation methods. Furthermore, we show that for some important classes of probabilistic models, DC-QIM is optimal (capacity-achieving) and regular QIM is near-optimal. These include both additive white Gaussian noise (AWGN) channels, which may be good models for hybrid transmission applications such as digital audio broadcasting, and mean-square-error-constrained attack channels that model private-key watermarking applications.},
+  verify  = {2},
+}
+
+@article{DaveyMacKay2001,
+  author  = {Matthew C. Davey and David J. C. MacKay},
+  title   = {Reliable Communication over Channels with Insertions, Deletions, and Substitutions},
+  journal = {IEEE Trans. Inf. Theory},
+  volume  = {47}, number = {2}, pages = {687--698}, year = {2001},
+  doi     = {10.1109/18.910582},
+  abstract = {A new block code is introduced which is capable of correcting multiple insertion, deletion, and substitution errors. The code consists of nonlinear inner codes, which we call ``watermark'' codes, concatenated with low-density parity-check codes over nonbinary fields. The inner code allows probabilistic resynchronization and provides soft outputs for the outer decoder, which then completes decoding. We present codes of rate 0.7 and transmitted length 5000 bits that can correct 30 insertion/deletion errors per block. We also present codes of rate 3/14 and length 4600 bits that can correct 450 insertion/deletion errors per block.},
+  verify  = {2},
+}
+
+@article{Mitzenmacher2009Survey,
+  author  = {Michael Mitzenmacher},
+  title   = {A Survey of Results for Deletion Channels and Related Synchronization Channels},
+  journal = {Probability Surveys},
+  volume  = {6}, pages = {1--33}, year = {2009},
+  doi     = {10.1214/08-PS141},
+  abstract = {The purpose of this survey is to describe recent progress in the study of the binary deletion channel and related channels with synchronization errors, including a clear description of the approaches used to analyze these channels, a summary of the capacity results for various channels, a discussion of suitable code constructions, and a consideration of related problems such as trace reconstruction. The binary symmetric channel, where each bit is independently received in error with probability p, and the binary erasure channel, where each bit is erased with probability p, enjoy a long and rich history. The deletion channel, where each bit is deleted independently with probability p, appears much more challenging to analyze, and the capacity of the deletion channel remains an open problem. We highlight a recent result that shows that the capacity is at least $(1-p)/9$ when each bit is deleted independently with fixed probability $p$. In other words, the capacity of the deletion channel is always within a (relatively small) constant factor of the corresponding erasure channel, even as the deletion probability $p$ goes to 1.},
+  verify  = {2},
+}
+
+@article{Sellers1962Marker,
+  author  = {F. Sellers},
+  title   = {Bit Loss and Gain Correction Code},
+  journal = {IRE Trans. Inf. Theory},
+  volume  = {8}, number = {1}, pages = {35--38}, year = {1962},
+  doi     = {10.1109/TIT.1962.1057684},
+  abstract = {A block code is presented that will correct an error consisting of the gain or loss of a bit (binary digit) within the block. The code can be generalized to correct the loss or gain of a burst of bits. A further feature is the possibility of correcting additive errors appearing in the vicinity of the bit loss or gain. An additive error is a bit changed from 0 to 1 or from 1 to 0. The code is constructed by inserting a known character into a burst-error-correcting code at periodic intervals. The known character locates the approximate position of the bit loss or gain. At the location a bit is inserted or removed from the block, depending on whether a loss or a gain has occurred. The error-correcting code then corrects the erroneous bits between where the error occurred and where the correction took place.},
+  verify  = {2},
+}
+
+@article{Ratzer2005Marker,
+  author  = {Edward A. Ratzer},
+  title   = {Marker Codes for Channels with Insertions and Deletions},
+  journal = {Ann. T{\'e}l{\'e}commun.},
+  volume  = {60}, number = {1-2}, pages = {29--44}, year = {2005},
+  doi     = {10.1007/BF03219806},
+  abstract = {Coding for channels with synchronization errors is studied. Marker codes, each consisting of a low-density parity-check code with inserted markers, are developed. At low insertion-deletion probabilities marker codes are shown to outperform watermark codes. Full iterative decoding enhances performance to close to the capacity bounds. The low-density parity-check codes are optimized and the best known rate R = 0.5 code for the insertion-deletion channel presented. The codes are also shown to be effective on the bit-deletion channel.},
+  verify  = {2},
+}
+
+% ===== DeMarking 正式发表版（其余近三年文献见上文系列共享条目，避免重复）=====
+@article{Yuan2025DeMarking,
+  author  = {Yali Yuan and Jian Ge and Guang Cheng},
+  title   = {{DeMarking}: A Defense for Network Flow Watermarking in Real-Time},
+  journal = {Computers \& Security},
+  volume  = {152},
+  pages   = {104355},
+  month   = may,
+  year    = {2025},
+  doi     = {10.1016/j.cose.2025.104355},
+  abstract = {The network flow watermarking technique associates the two communicating parties by actively modifying certain characteristics of the stream generated by the sender so that it covertly carries some special marking information. Some curious users communicating with the hidden server as a Tor client may attempt de-anonymization attacks to uncover the real identity of the hidden server by using this technique. This compromises the privacy of the anonymized communication system. Therefore, we propose a defense scheme against flow watermarking. The scheme is based on deep neural networks and utilizes generative adversarial networks to convert the original Inter-Packet Delays (IPD) into new IPDs generated by the model. We also adopt the concept of adversarial attacks to ensure that the detector will produce an incorrect classification when detecting these new IPDs. This approach ensures that these IPDs are considered ``clean'', effectively covering the potential watermarks. This scheme is effective against time-based flow watermarking techniques.},
+  verify  = {2},
+}
+
+@article{Feng2024HSTW,
+  author  = {Wangxin Feng and Xiangyang Luo and Tengyao Li and Chunfang Yang},
+  title   = {{HSTW}: A robust network flow watermarking method based on hybrid packet sequence-timing},
+  journal = {Computers \& Security},
+  volume  = {139},
+  pages   = {103701},
+  year    = {2024},
+  doi     = {10.1016/j.cose.2024.103701}
+}
+
+@inproceedings{Draper2016VPN,
+  author    = {Gerard {Draper-Gil} and Arash {Habibi Lashkari} and Mohammad Saiful Islam Mamun and Ali A. Ghorbani},
+  title     = {Characterization of Encrypted and {VPN} Traffic using Time-related Features},
+  booktitle = {Proc. 2nd Int. Conf. Information Systems Security and Privacy (ICISSP)},
+  address   = {Rome, Italy},
+  year      = {2016},
+  pages     = {407--414},
+  publisher = {SciTePress},
+  doi       = {10.5220/0005740704070414},
+  note      = {Dataset: ISCXVPN2016, \url{https://www.unb.ca/cic/datasets/vpn.html}}
+}

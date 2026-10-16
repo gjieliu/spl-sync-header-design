@@ -2,16 +2,16 @@
 
     python3 run_all.py                 # list the stages
     python3 run_all.py <stage> [...]   # run selected stages
-    python3 run_all.py all             # run everything (long; see the note below)
+    python3 run_all.py local           # fixed R1 recheck, two-stage, table, figure, checks
+    python3 run_all.py all             # exploratory full pipeline; can replace designs
 
 NOTE ON RUNTIME.  The design search (stage `design`) evaluates a scan statistic by
 simulation for every candidate, so it takes a few minutes per lambda.  It is driven by
 run_design_v2.py, which is RESUMABLE: results already present in
 results/design_v2_table.json (inside code/) are skipped, so it can be invoked repeatedly with a subset
-of lambdas.  Stages that need the real-trace IPD pools read them from $NFW_TRACE_DIR
-(default: ../../../../NFW2_Simulation/results/real_traffic, relative to code/experiments/); see ../DATA.md.
+of lambdas.  Stages that need the real-trace IPD pools read them from $NFW_TRACE_DIR; see ../DATA.md.
 
-Dependencies: numpy only (no scipy; all binomial tails are exact sums).
+Dependencies: numpy and matplotlib for the local pipeline (no scipy; binomial tails use direct sums).
 """
 import os, sys, subprocess
 
@@ -29,20 +29,21 @@ STAGES = [
     ("v2cfg",    "probeA4_v2configs.py",         "balanced bound checked on the v2 configurations"),
     ("precond",  "probeA5_precondition.py",      "autocorrelation alone does not flag the failing cell"),
     ("sidelobe", "probeA6_sidelobe.py",          "FALSIFIED: max|c_k| does not predict p0"),
-    ("align",    "probeA7_alignment.py",         "signed spectral alignment V(g) does predict p0"),
+    ("align",    "probeA7_alignment.py",         "covariance-weighted V(g) correlates with measured p0"),
     ("burst",    "probeB_burst_channel.py",      "Gilbert-Elliott bursts: yield up, blackouts up"),
     ("design",   "run_design_v2.py",             "the v2 design table (resumable)"),
     ("asym",     "run_design_v2_asym.py",        "robustness to asymmetric insertion/deletion"),
-    ("ladder",   "probeC_ladder.py",             "certified FA bound validated over ~5 decades"),
+    ("ladder",   "probeC_ladder.py",             "single-track iid binomial tail compared at accessible rates"),
     ("e2e",      "probeD_endtoend.py",           "decodable yield Y_exact vs reported Y_hit"),
     ("recap",    "probeD2_recapture.py",         "paired comparison of re-capture rules"),
     ("jitter",   "probeE_heavytail_asym.py",     "eps under heavy-tailed jitter; R under asymmetry"),
     ("syncsens", "probeK_syncword_sensitivity.py", "why the design needs the separation margin q >= 10 p_W"),
     ("burstv2",  "probeB2_burst_v2.py",          "bursts on the v2 configurations (decodable yield)"),
+    ("recheck",  "recheck_local.py",            "fixed R1 designs: exact finite-window bounds and original nominal P_D"),
+    ("twostage", "probeJ_two_stage.py",          "retained screens: iid rejection-latency upper bounds in IPDs"),
     ("tables",   "make_tables.py",               "emit the manuscript table from the JSONs"),
     ("figs",     "make_figs.py",                 "emit the manuscript figure"),
-    ("verify",   "verify_claims.py",             "cross-check every number in the manuscript and response against the JSONs"),
-    ("twostage", "probeJ_two_stage.py",          "honest fast-reject: two-stage screen, E[reject] ~ 830 packets"),
+    ("verify",   "verify_claims.py",             "check reported numbers, revision scope and response against the JSONs"),
 ]
 
 
@@ -54,7 +55,8 @@ def main(argv):
         for n, f, w in STAGES:
             print("  %-9s %-32s %s" % (n, f, w))
         return 0
-    todo = names if argv == ["all"] else argv
+    todo = (['recheck', 'twostage', 'tables', 'figs', 'verify']
+            if argv == ['local'] else names if argv == ['all'] else argv)
     bad = [t for t in todo if t not in names]
     if bad:
         print("unknown stage(s):", ", ".join(bad)); return 2

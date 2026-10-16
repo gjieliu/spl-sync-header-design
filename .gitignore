@@ -1,9 +1,4 @@
 __pycache__/
 *.pyc
 .DS_Store
-# LaTeX build products live next to the manuscript, not here
-*.aux
-*.log
-*.bbl
-*.blg
-*.synctex.gz
+manuscript/build/

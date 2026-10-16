@@ -1,12 +1,8 @@
-"""Probe C (answers R2-C3): the 1e-9 target cannot be observed by a finite Monte-Carlo,
-so validate the CERTIFIED BOUND's ingredients instead, over a ladder of decades.
-
-The bound P_FA <= M * p0 * P[Bin(N-1, W p0) >= k-1] rests on three pieces:
-  (u1) union over the M starts        -- an inequality, nothing to validate;
-  (u2) p_W <= W p0                    -- an inequality; we measure the slack;
-  (u3) slot independence along a track when 2R <= L_c  -- THIS is the modelling step,
-       and it is what the ladder tests: sweep k so the per-track confirmation
-       probability spans 1e-2 .. 1e-6 and compare measurement with the bound.
+"""Probe C: empirical comparison with the proved single-track binomial domination.
+The unchanged ladder uses iid fair backgrounds and no finite-window start count.
+It neither establishes slot independence nor empirically certifies a 1e-9 rate.
+The revised Proposition 3 proves the single-track tail and separately sums feasible
+finite-window starts. This script measures slack at accessible probabilities only.
 """
 import os, json
 import numpy as np

@@ -1,5 +1,5 @@
 """Emit the manuscript tables from the result JSONs, so no number is transcribed by hand."""
-import os, json
+import os, json, math
 HERE = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(HERE, "..", "results")
 OUT = os.path.join(HERE, "..", "..", "manuscript")
@@ -13,13 +13,8 @@ keys = [k for k in sorted(T, key=float) if T[k].get("feasible")]
 # ---- one wide table: design (left) + validation (right) ----
 t = [r"\begin{table*}[t]", r"\centering\footnotesize",
      r"\setlength{\tabcolsep}{4.2pt}",
-     r"\caption{Design ($\pbit{=}5\%$, $L_c{=}10$, $\alpha{=}10^{-9}$, "
-     r"$\Lobs{=}2000$ packets; every row meets \eqref{eq:fa}, largest "
-     r"$P_{\mathrm{FA}}=7.7{\times}10^{-10}$, and \eqref{eq:disjoint}; $P_{\mathrm{D}}$ is the scan statistic of Sec.~\ref{sec:design}-B) and "
-     r"Monte-Carlo validation under actual insertions and deletions. "
-     r"$Y_{\mathrm{hit}}$ counts frames called aligned, $Y_{\mathrm{exact}}$ only "
-     r"those on the true position \emph{and} frame index; the last two columns are "
-     r"under bursty edits of mean length $20$ at the same mean $\lambda$.}",
+     r"\caption{Designs and tracking yields ($\pbit{=}5\%$, $L_c{=}10$, "
+     r"$\Lobs{=}2000$ IPDs); burst columns use length $20$.}",
      r"\label{tab:main}",
      r"\begin{tabular}{@{}c ccccccccc c ccccc@{}}", r"\toprule",
      r"& \multicolumn{9}{c}{design} & & \multicolumn{5}{c}{validation} \\",

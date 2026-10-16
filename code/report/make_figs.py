@@ -1,5 +1,5 @@
-"""Manuscript figure: (a) the balance result on real traffic, (b) the certified bound
-validated over a decade ladder.  Kept deliberately small (single column, ~1.45 in) so
+"""Manuscript figure: (a) empirical balance comparisons on real traffic, (b) the
+single-track iid binomial tail against measurements. Kept small (single column, ~1.45 in) so
 that the technical content fits SPL's four-page limit; legibility is protected by using
 direct labels instead of dense legends."""
 import os, json
@@ -39,7 +39,7 @@ for pool, d, mk, lab in series:
     ax[0].annotate(lab, xy=(ws[-1], ys[-1]), xytext=(-1, 3 if lab == "VPN" else -7),
                    textcoords="offset points", ha="right", fontsize=5.4)
 ax[0].axhline(p0t, color="k", ls="--", lw=0.8)
-ax[0].text(-0.3, p0t * 0.42, "fair-bit bound", ha="left", fontsize=5.4)
+ax[0].text(-0.3, p0t * 0.42, "iid reference", ha="left", fontsize=5.4)
 ax[0].axvline(5, color="0.6", ls=":", lw=0.8)
 ax[0].text(5.25, 1.1e-4, "balanced", fontsize=5.4, color="0.35")
 ax[0].set_xlabel("Hamming weight $w$", labelpad=0.5)
@@ -55,7 +55,7 @@ ks = [l["k"] for l in lad]
 ax[1].semilogy(ks, [l["bound"] for l in lad], "o-", ms=2.2, lw=0.8, color="C0")
 ax[1].semilogy(ks, [l["emp"] for l in lad], "s--", ms=2.2, lw=0.8, color="C3",
                mfc="none")
-ax[1].annotate("certified bound", xy=(ks[-1], lad[-1]["bound"]), xytext=(-2, 5),
+ax[1].annotate("binomial bound", xy=(ks[-1], lad[-1]["bound"]), xytext=(-2, 5),
                textcoords="offset points", ha="right", fontsize=5.4, color="C0")
 ax[1].annotate("measured", xy=(ks[-3], lad[-3]["emp"]), xytext=(-4, -9),
                textcoords="offset points", ha="right", fontsize=5.4, color="C3")

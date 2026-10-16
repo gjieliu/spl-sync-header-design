@@ -1,15 +1,20 @@
 """Probe J: a genuine two-stage detector, so that a fast-rejection claim can be made
 honestly (the submitted letter claimed one that its own computation did not support).
 
-Stage 1  a loose screen over L1 packets: certified P_FA1 <= alpha1, scan P_D1 >= 0.999.
+Stage 1  a loose screen over L1 received IPDs: iid P_FA1 <= alpha1, nominal P_D1 >= 0.999.
+Default: recheck the frozen R1 screens, preserving all L1/N1/k1. Use --search only
+for a new search; it is not the source of the retained R1 configurations.
 Stage 2  the certified full-window test, UNCHANGED, run only on stage-1 survivors.
 
 Soundness.  Stage 1 only saves time; it never relaxes stage 2, so the overall false alarm
 is still bounded by stage 2's certified alpha.  On the detection side a union bound gives
     P_D >= 1 - (1 - P_D1) - (1 - P_D2),
 so with P_D1 >= 0.999 the stage-2 target must be raised to 0.991 to keep P_D >= 0.99.
-Expected rejection latency over background flows:
-    E[L] = (1 - P_FA1) * L1 + P_FA1 * L_obs .
+For unmarked iid-background flows, the certified first-stage rate yields
+    E[L] <= L1 + P_FA1_bound * (L_obs-L1),
+measured in received IPDs. This is an upper bound, not an observed expectation.
+The retained main-table nominal P_D values are not all >=0.991, so the two-stage
+union bound above must not be reported as a uniform 0.99 detection guarantee.
 """
 import os, sys, json
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, os.path.dirname(HERE))
@@ -48,7 +53,7 @@ def main():
                     J = max(0, (L1 - span + 1) // T_f)
                     kmin = None
                     for k in range(2, N + 1):
-                        if D.p_fa_certified(p0c, W, N, k, M, disj) <= alpha1:
+                        if D.p_fa_certified(p0c, W, N, k, L1, L_h, T_f) <= alpha1:
                             kmin = k
                             break
                     if kmin is None:
@@ -58,7 +63,7 @@ def main():
                     pd = D.p_d_scan(qcch, qch, N, kmin, J, L1 // T_f, n_sim=40000)
                     if pd < PD1_TARGET:
                         continue
-                    pfa = D.p_fa_certified(p0c, W, N, kmin, M, disj)
+                    pfa = D.p_fa_certified(p0c, W, N, kmin, L1, L_h, T_f)
                     lat = (1 - pfa) * L1 + pfa * L_OBS
                     if best is None or lat < best[-1]:
                         best = (L1, N, kmin, pfa, pd, lat)
@@ -71,7 +76,7 @@ def main():
             a1, L1, N, k, pfa, pd, lat = found
             out.append({"lam": r["lam"], "L_h": L_h, "tau": tau, "R": R, "alpha1": a1,
                         "L1": L1, "N1": N, "k1": k, "P_FA1": pfa, "P_D1": pd,
-                        "E_reject_packets": lat, "L_obs": L_OBS})
+                        "E_reject_ipds_upper": lat, "L_obs": L_OBS})
             print("%-6.1f %-10s %-7.2g | %-4d %-4d %-5d %-9.3f %-8.5f %-9.0f"
                   % (r["lam"] * 100, "%d/%d/%d" % (L_h, tau, R), a1, N, k, L1, pfa, pd, lat),
                   flush=True)
@@ -84,4 +89,12 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if '--search' in sys.argv:
+        main()
+    else:
+        from recheck_local import load, recheck_stage1
+        rows = load('design_v2_table.json')['rows']
+        updated, changes = recheck_stage1(rows)
+        json.dump(updated, open(os.path.join(RES, 'probeJ_two_stage.json'), 'w'), indent=1)
+        for row in updated:
+            print(row['lam'], row['P_FA1'], row['alpha1'], row['E_reject_ipds_upper'])

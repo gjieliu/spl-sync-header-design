@@ -6,19 +6,21 @@ design_v2 -- resubmission design core.  Three changes vs the submitted letter.
          background marginal pi, and sup_pi P(match>=tau) is attained at pi=1/2, i.e.
          the "fair bit" value P(Bin(L_h,1/2)>=tau) is an UPPER BOUND, not an assumption.
     (A2) p_W <= W*p_0  is the union bound over the W scanned offsets (any dependence).
-    (A3) if  2R <= L_c  the +-R scan windows of consecutive frame slots are DISJOINT
-         (span W+L_h-1 <= T_f), so under independent background bits the per-slot
-         indicators along one track are exactly independent -> the binomial is exact.
-    (A4) union bound over the M candidate starts.
-    =>  P_FA <= M * p_0 * P[Bin(N-1, W p_0) >= k-1]      (certified)
+    (A3) Under 2R <= L_c, scans after misses reveal fresh independent bits.
+         Hit-run tails are bounded by u**ell, u=min(1,W*p0). Conditional geometric
+         coupling gives binomial domination of cumulative hits, not slot independence.
+    (A4) Sum fixed-start binomial tails over feasible finite-window hit times:
+         P_FA <= p0 * sum_t [L_obs-L_h-t*T_f+(k-1)*R+1]_+
+                    * comb(t-1,k-2)*u**(k-1)*(1-u)**(t-k+1).
+         This equals M_eff*p0*P[Bin(N-1,u)>=k-1] (Proposition 3).
 
 (B) DETECTION: the submitted product form 1-(1-p_track)^J is PROVABLY OPTIMISTIC.
-    The J candidate tracks of a marked flow read the SAME periodic hit sequence
-    H_1..H_Nmax ~ Bern(q); each confirmation event is increasing in that vector, so by
-    Harris/FKG  P(no confirm) >= prod P(no confirm_f), i.e. P_D <= 1-(1-p_track)^J.
+    In the nominal model, tracks share independent coordinates H_i~Bern(q) and
+    cap_i~Bern(q_cap), all 2*N_max coordinates mutually independent. Confirmation
+    events are increasing, so Harris/FKG gives P_D <= 1-(1-p_track)^J.
     The product form is therefore a valid SEARCH RELAXATION (never discards a feasible
-    point) but not a guarantee.  True P_D is the SCAN STATISTIC, evaluated exactly in
-    the per-slot Bernoulli model by simulation of that model.
+    point) but not a guarantee. The nominal scan probability is estimated by
+    simulation of the unchanged two-sequence per-slot Bernoulli model.
 
 (C) OBSERVATION WINDOW semantics are made explicit.  The submitted code counted the
     M starts and J true phases over L_max=2000 while the text said L_rej=500; the two
@@ -26,7 +28,8 @@ design_v2 -- resubmission design core.  Three changes vs the submitted letter.
     rejection latency IS L_obs.
 """
 import numpy as np
-from math import comb, log1p, expm1
+from math import comb, log1p, expm1, nextafter, inf
+from fractions import Fraction
 
 # ---------- binomial helpers (no scipy on the target box) ----------
 
@@ -46,9 +49,16 @@ def binom_sf_ge(n, p, k):
 # ---------- (A1) balanced-header false-hit bound ----------
 
 def p0_balanced_sup(L_h, tau, n_grid=201):
-    """sup over background marginal pi of P(#matches >= tau) for a header of weight
-    w = floor(L_h/2)  (exact balance when L_h is even).  Matches = Bin(w,pi)+Bin(L_h-w,1-pi).
-    Returns (sup, pi*, fair_bit_value)."""
+    """Return (bound, maximizing pi, fair tail).
+
+    For even balanced headers and integer tau>L_h/2 the continuous maximum is
+    the fair tail: paired matches give symmetric unimodal three-point convolutions,
+    whose upper tails increase in pi*(1-pi); the argument is Proposition 2 in the manuscript.
+    Odd lengths retain the original grid diagnostic; it is NOT a certified supremum.
+    """
+    if L_h % 2 == 0 and L_h // 2 < tau <= L_h:
+        fair = sum(comb(L_h, i) for i in range(tau, L_h + 1)) / 2 ** L_h
+        return fair, 0.5, fair
     w = L_h // 2
     z = L_h - w
     best, best_pi = 0.0, 0.5
@@ -68,28 +78,44 @@ def p0_balanced_sup(L_h, tau, n_grid=201):
 
 # ---------- (A) certified false alarm ----------
 
-def p_fa_certified(p0, W, N, k, M, disjoint=True):
-    """Union-bound certified P_FA.
+def _upward_float(value):
+    """Round a nonnegative exact rational upward to binary64."""
+    out = float(value)
+    if Fraction.from_float(out) < value:
+        out = nextafter(out, inf)
+    return out
 
-    disjoint=True  : requires 2R <= L_c, so the +-R scan windows of consecutive frame
-                     slots do not overlap and the per-slot indicators along one track
-                     are exactly independent -> the binomial is exact.
-    disjoint=False : windows of ADJACENT slots overlap (2R > L_c).  Slots two apart are
-                     still disjoint, so split the N-1 slots into the odd- and even-index
-                     subsets, each internally independent, and use
-                        P[sum >= k-1] <= 2 * P[Bin(ceil((N-1)/2), pW) >= ceil((k-1)/2)] ,
-                     since at least one subset must carry half the required hits.
-                     Rigorous for ANY dependence between the two subsets."""
-    pW = min(1.0, W * p0)
-    if k <= 1:
-        inner = 1.0
-    elif disjoint:
-        inner = binom_sf_ge(N - 1, pW, k - 1)
-    else:
-        n_half = -(-(N - 1) // 2)
-        k_half = -(-(k - 1) // 2)
-        inner = min(1.0, 2.0 * binom_sf_ge(n_half, pW, k_half))
-    return min(1.0, M * p0 * inner)
+
+def p_fa_window_exact(p0, W, N, k, L_obs, L_h, T_f):
+    """Exact rational version of Proposition 3's finite-window sum.
+
+    Assumes iid background, valid p0 and 2R<=L_c, R=(W-1)/2, L_c=T_f-L_h.
+    The factors are reference rth-success masses, not actual first-hit masses.
+    """
+    if W < 1 or W % 2 != 1 or not 1 <= k <= N:
+        raise ValueError('Require odd W>=1 and 1<=k<=N')
+    R = (W - 1) // 2
+    if 2 * R > T_f - L_h:
+        raise ValueError('Certification requires 2R<=L_c; no odd/even fallback')
+    p = Fraction(p0)
+    if not 0 <= p <= 1:
+        raise ValueError('p0 must lie in [0,1]')
+    if k == 1:
+        return min(Fraction(1), max(0, L_obs - L_h + 1) * p)
+    n, r, u = N - 1, k - 1, min(Fraction(1), W * p)
+    total = Fraction(0)
+    for t in range(r, n + 1):
+        weight = max(0, L_obs - L_h - t * T_f + r * R + 1)
+        if not weight:
+            break
+        mass = comb(t - 1, r - 1) * u ** r * (1 - u) ** (t - r)
+        total += weight * mass
+    return min(Fraction(1), p * total)
+
+
+def p_fa_certified(p0, W, N, k, L_obs, L_h, T_f):
+    """Finite-window iid certificate, rounded upward. No slot-independence claim."""
+    return _upward_float(p_fa_window_exact(p0, W, N, k, L_obs, L_h, T_f))
 
 
 def p_fa_product(p0, pW, N, k, M):
@@ -116,8 +142,11 @@ _SCAN_CACHE = {}
 
 
 def p_d_scan(q_cap, q, N, k, J, N_max, n_sim=60000, seed=20260830):
-    """True P_D in the per-slot Bernoulli model: the J tracks share ONE hit sequence.
-    confirm iff exists f<=J-1 with capture at f and >= k-1 hits in slots f+1..f+N-1."""
+    """Nominal P_D estimate: tracks share H~Bern(q) and cap~Bern(q_cap),
+    with all 2*N_max coordinates mutually independent. Confirm iff some
+    f<min(J,N_max-N+1) has cap[f]=1 and >=k-1 subsequent H hits.
+    This working model is not a pathwise representation of the edit detector.
+    """
     key = (round(q_cap, 6), round(q, 6), N, k, J, N_max, n_sim)
     if key in _SCAN_CACHE:
         return _SCAN_CACHE[key]
@@ -172,7 +201,7 @@ def search(lam, alpha=1e-9, eps=0.05, L_c=10, delta=0.01, eta_lock=1e-3,
     """Max conservative aligned-frame yield subject to
        (i)  certified P_FA <= alpha,
        (ii) scan-statistic P_D >= 1-delta   (product form used only as a relaxation),
-       (iii) 2R <= L_c  (disjoint scan windows -> the binomial in (i) is exact),
+       (iii) 2R <= L_c  (fresh scans after misses -> binomial domination),
        (iv) optional cap on the confirmation-track span N*T_f,
        (v)  a MARGINED feasibility bound  q >= sep_min * p_W.
 
@@ -185,6 +214,8 @@ def search(lam, alpha=1e-9, eps=0.05, L_c=10, delta=0.01, eta_lock=1e-3,
     q >> p_W in which the per-slot model is accurate.
 
     L_obs is the screening observation window and IS the rejection latency."""
+    if not require_even or not require_disjoint:
+        raise ValueError('Certified search requires even balance and 2R<=L_c')
     best = None
     for L_h in range(L_h_lo, L_h_hi + 1):
         if require_even and L_h % 2:
@@ -223,7 +254,7 @@ def search(lam, alpha=1e-9, eps=0.05, L_c=10, delta=0.01, eta_lock=1e-3,
                 J = (L_obs - span + 1) // T_f
                 kmin = None
                 for k in range(2, N + 1):
-                    if p_fa_certified(p0_chk, W, N, k, M, disjoint) <= alpha:
+                    if p_fa_certified(p0_chk, W, N, k, L_obs, L_h, T_f) <= alpha:
                         kmin = k
                         break
                 if kmin is None:
@@ -244,7 +275,7 @@ def search(lam, alpha=1e-9, eps=0.05, L_c=10, delta=0.01, eta_lock=1e-3,
                         muY=float(muY), q=float(q), q_cap=float(q_cap),
                         p0_bound=float(p0), pW_bound=float(min(1.0, W * p0)),
                         P_in=float(P_in), M=int(M), J=int(J),
-                        P_FA_cert=float(p_fa_certified(p0_chk, W, N, k, M, disjoint)),
+                        P_FA_cert=float(p_fa_certified(p0_chk, W, N, k, L_obs, L_h, T_f)),
                         P_FA_product=float(p_fa_product(p0_chk, min(1, W * p0_chk),
                                                         N, k, M)),
                         P_D_scan=float(pd), sep=float(q / min(1.0, W * p0)),
